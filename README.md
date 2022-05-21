@@ -1,3 +1,5 @@
+[![Github tag](https://badgen.net/github/tag/denkylabs/discord-api-types-go)](https://github.com/denkylabs/discord-api-types-go/tags/) [![CodeFactor](https://www.codefactor.io/repository/github/denkylabs/discord-api-types-go/badge)](https://www.codefactor.io/repository/github/denkylabs/discord-api-types-go) [![DeepSource](https://deepsource.io/gh/denkylabs/discord-api-types-go.svg/?label=active+issues&show_trend=true&token=-7FwA0KciBj7gHuWLxwqoHPl)](https://deepsource.io/gh/denkylabs/discord-api-types-go/?ref=repository-badge) [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](https://go.dev/) [![GitHub go.mod Go version of a Go module](https://img.shields.io/github/go-mod/go-version/denkylabs/discord-api-types-go.svg)](https://github.com/denkylabs/discord-api-types-go)
+
 # discord-api-types
 Up to date Discord API Typings for Golang
 
@@ -37,3 +39,5 @@ The exports of each API version is split into three main parts:
 - [discord/discord-api-docs](https://github.com/discord/discord-api-docs/)
 - [Discord Developer Portal](https://discord.com/developers/docs/intro)
 - [Discord Developers server](https://discord.gg/discord-developers)
+
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
