@@ -1,4 +1,4 @@
-package types
+package gateway
 
 type GatewayURLQuery struct {
 	// The gateway version to use
