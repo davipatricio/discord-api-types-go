@@ -287,6 +287,8 @@ type GatewayGuildModifyDispatch struct {
 	T string `json:"t"`
 	// The data of the event
 	D GatewayChannelModifyDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
@@ -294,6 +296,30 @@ type GatewayGuildModifyDispatchData interface{} // TODO: Implement APIGuild type
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
 type GatewayGuildCreateDispatch GatewayGuildModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#guild-create
+// https://discord.com/developers/docs/topics/gateway#guild-create-guild-create-extra-fields
+type GatewayGuildCreateDispatchData interface{} // TODO: Implement APIGuild type
+
+// https://discord.com/developers/docs/topics/gateway#guild-update
+type GatewayGuildUpdateDispatch GatewayGuildModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#guild-update
+type GatewayGuildUpdateDispatchData interface{} // TODO: Implement APIGuild type
+
+// https://discord.com/developers/docs/topics/gateway#guild-delete
+type GatewayGuildDeleteDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildDeleteDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-delete
+type GatewayGuildDeleteDispatchData interface{} // TODO: Implement APIUnavailableGuild type
 
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
 type GatewayShard struct {
