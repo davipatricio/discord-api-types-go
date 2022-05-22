@@ -1,6 +1,6 @@
 package gateway
 
-const GatewayVersion = "10"
+const GatewayVersion string = "10"
 
 // https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-opcodes
 const (
@@ -153,8 +153,11 @@ var (
 
 // https://discord.com/developers/docs/topics/gateway#hello
 type GatewayHello struct {
-	Op int              `json:"op"`
-	D  GatewayHelloData `json:"d"`
+	Op int `json:"op"`
+	// The data of the event
+	D GatewayHelloData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#hello
@@ -165,17 +168,24 @@ type GatewayHelloData struct {
 // https://discord.com/developers/docs/topics/gateway#heartbeating
 type GatewayHeartbeatRequest struct {
 	Op int `json:"op"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#heartbeating-example-gateway-heartbeat-ack
 type GatewayHeartbeatAck struct {
 	Op int `json:"op"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#invalid-session
 type GatewayInvalidSession struct {
-	Op int                       `json:"op"`
-	D  GatewayInvalidSessionData `json:"d"`
+	Op int `json:"op"`
+	// The data of the event
+	D GatewayInvalidSessionData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#invalid-session
@@ -188,12 +198,14 @@ type GatewayReconnect struct {
 
 // https://discord.com/developers/docs/topics/gateway#reconnect
 type GatewayReadyDispatch struct {
-	Op int                      `json:"op"`
-	D  GatewayReadyDispatchData `json:"d"`
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayReadyDispatchData `json:"d"`
 }
 
-// Data for the READY dispatch.
-// https://discord.com/developers/docs/topics/gateway#reconnect
+// Data for the READY dispatch. https://discord.com/developers/docs/topics/gateway#reconnect
 type GatewayReadyDispatchData struct {
 	// Gateway version.
 	// See https://discord.com/developers/docs/topics/gateway#gateways-gateway-versions
@@ -201,13 +213,11 @@ type GatewayReadyDispatchData struct {
 	// Information about the user including email.
 	// See https://discord.com/developers/docs/resources/user#user-object
 	User map[string]interface{} // TODO: Implement APIUser type
-	// The guilds the user is in.
-	// See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
+	// The guilds the user is in. See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
 	Guilds []map[string]interface{} // TODO: Implement APIUnavailableGuild type
 	// Used for resuming connections
 	SessionId string
-	// The shard information associated with this session, if sent when identifying.
-	// See https://discord.com/developers/docs/topics/gateway#sharding
+	// The shard information associated with this session, if sent when identifying. See https://discord.com/developers/docs/topics/gateway#sharding
 	Shard []GatewayShard
 	// Contains 'id' and 'flags' properties
 	Application map[string]interface{} // TODO: Implement APIApplication type
@@ -216,10 +226,76 @@ type GatewayReadyDispatchData struct {
 // https://discord.com/developers/docs/topics/gateway#resumed
 type GatewayResumedDispatch struct {
 	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
 }
 
-// Used for Guild Sharding.
-// See https://discord.com/developers/docs/topics/gateway#sharding
+type GatewayChannelModifyDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayChannelModifyDispatchData `json:"d"`
+}
+
+type GatewayChannelModifyDispatchData interface{} // TODO: Implement APIChannel type
+
+// https://discord.com/developers/docs/topics/gateway#channel-update
+type GatewayChannelCreateDispatch GatewayChannelModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#channel-update
+type GatewayChannelCreateDispatchData GatewayChannelModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#channel-update
+type GatewayChannelUpdateDispatch GatewayChannelModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#channel-update
+type GatewayChannelUpdateDispatchData GatewayChannelModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#channel-update
+type GatewayChannelDeleteDispatch GatewayChannelModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#channel-update
+type GatewayChannelDeleteDispatchData GatewayChannelModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#channel-pins-update
+type GatewayChannelPinsUpdateDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayChannelPinsUpdateDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#channel-pins-update
+type GatewayChannelPinsUpdateDispatchData struct {
+	// The id of the guild
+	GuildId string `json:"guild_id"`
+	// The id of the channel
+	ChannelId string `json:"channel_id"`
+	// The time at which the most recent pinned message was pinned
+	LastPinTimestamp int `json:"last_pin_timestamp"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-create
+// https://discord.com/developers/docs/topics/gateway#guild-update
+type GatewayGuildModifyDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayChannelModifyDispatchData `json:"d"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-update
+type GatewayGuildModifyDispatchData interface{} // TODO: Implement APIGuild type
+
+// https://discord.com/developers/docs/topics/gateway#guild-create
+type GatewayGuildCreateDispatch GatewayGuildModifyDispatch
+
+// Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
 type GatewayShard struct {
 	ShardId    int `json:"shard_id"`
 	ShardCount int `json:"shard_count"`
