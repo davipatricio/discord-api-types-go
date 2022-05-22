@@ -321,6 +321,78 @@ type GatewayGuildDeleteDispatch struct {
 // https://discord.com/developers/docs/topics/gateway#guild-delete
 type GatewayGuildDeleteDispatchData interface{} // TODO: Implement APIUnavailableGuild type
 
+// https://discord.com/developers/docs/topics/gateway#guild-ban-add
+// https://discord.com/developers/docs/topics/gateway#guild-ban-remove
+type GatewayGuildBanModifyDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildBanModifyDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-ban-add
+// https://discord.com/developers/docs/topics/gateway#guild-ban-remove
+type GatewayGuildBanModifyDispatchData struct {
+	// ID of the guild
+	GuildId string `json:"guild_id"`
+	// The banned user. See https://discord.com/developers/docs/resources/user#user-object
+	User interface{} `json:"user"` // TODO: Implement APIUser type
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-ban-add
+type GatewayGuildBanAddDispatch GatewayGuildBanModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#guild-ban-add
+type GatewayGuildBanAddDispatchData GatewayGuildBanModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-ban-remove
+type GatewayGuildBanRemoveDispatch GatewayGuildBanModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-ban-remove
+type GatewayGuildBanRemoveDispatchData GatewayGuildBanModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-emojis-update
+type GatewayGuildEmojisUpdateDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildBanModifyDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-emojis-update
+type GatewayGuildEmojisUpdateDispatchData struct {
+	// ID of the guild
+	GuildId string `json:"guild_id"`
+	// Array of emojis. See https://discord.com/developers/docs/resources/emoji#emoji-object
+	Emojis []interface{} `json:"emojis"` // TODO: Implement APIEmoji type
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-stickers-update
+type GatewayGuildStickersUpdateDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildBanModifyDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-stickers-update
+type GatewayGuildStickersUpdateDispatchData struct {
+	// ID of the guild
+	GuildId string `json:"guild_id"`
+	// Array of stickers. See https://discord.com/developers/docs/resources/sticker#sticker-object
+	Stickers []interface{} `json:"stickers"` // TODO: Implement APISticker type
+}
+
+
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
 type GatewayShard struct {
 	ShardId    int `json:"shard_id"`
