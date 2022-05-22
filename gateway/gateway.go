@@ -360,7 +360,7 @@ type GatewayGuildEmojisUpdateDispatch struct {
 	// The name of the event
 	T string `json:"t"`
 	// The data of the event
-	D GatewayGuildBanModifyDispatchData `json:"d"`
+	D GatewayGuildEmojisUpdateDispatchData `json:"d"`
 	// Sequence number, used for resuming sessions and heartbeats
 	S int `json:"s"`
 }
@@ -379,7 +379,7 @@ type GatewayGuildStickersUpdateDispatch struct {
 	// The name of the event
 	T string `json:"t"`
 	// The data of the event
-	D GatewayGuildBanModifyDispatchData `json:"d"`
+	D GatewayGuildStickersUpdateDispatchData `json:"d"`
 	// Sequence number, used for resuming sessions and heartbeats
 	S int `json:"s"`
 }
@@ -392,6 +392,22 @@ type GatewayGuildStickersUpdateDispatchData struct {
 	Stickers []interface{} `json:"stickers"` // TODO: Implement APISticker type
 }
 
+// https://discord.com/developers/docs/topics/gateway#guild-integrations-update
+type GatewayGuildIntegrationsUpdateDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildIntegrationsUpdateDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-integrations-update
+type GatewayGuildIntegrationsUpdateDispatchData struct {
+	/// ID of the guild whose integrations were updated
+	GuildId string `json:"guild_id"`
+}
 
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
 type GatewayShard struct {
