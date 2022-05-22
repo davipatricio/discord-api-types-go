@@ -409,6 +409,42 @@ type GatewayGuildIntegrationsUpdateDispatchData struct {
 	GuildId string `json:"guild_id"`
 }
 
+// https://discord.com/developers/docs/topics/gateway#guild-member-add
+type GatewayGuildMemberAddDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildMemberAddDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-member-add
+type GatewayGuildMemberAddDispatchData struct { // TODO: Implement APIGuildMember type
+	// The id of the guild
+	GuildId string `json:"guild_id"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-member-remove
+type GatewayGuildMemberRemoveDispatch struct {
+	Op int `json:"op"`
+	// The name of the event
+	T string `json:"t"`
+	// The data of the event
+	D GatewayGuildMemberRemoveDispatchData `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S int `json:"s"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-member-remove
+type GatewayGuildMemberRemoveDispatchData struct { // TODO: Implement APIGuildMember type
+	// The id of the guild
+	GuildId string `json:"guild_id"`
+	// The user who was removed
+	User interface{} `json:"user"` // TODO: Implement APIUser type
+}
+
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
 type GatewayShard struct {
 	ShardId    int `json:"shard_id"`
