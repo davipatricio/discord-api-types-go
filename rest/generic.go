@@ -1,0 +1,36 @@
+package rest
+
+// A map with the language names as keys and the language codes as values
+// https://discord.com/developers/docs/reference#locales
+var Locale map[string]string = map[string]string{
+	"Bulgarian":    "bg",
+	"ChineseCN":    "zh-CN",
+	"ChineseTW":    "zh-TW",
+	"Croatian":     "hr",
+	"Czech":        "cs",
+	"Danish":       "da",
+	"Dutch":        "nl",
+	"EnglishGB":    "en-GB",
+	"EnglishUS":    "en-US",
+	"Finnish":      "fi",
+	"French":       "fr",
+	"German":       "de",
+	"Greek":        "el",
+	"Hindi":        "hi",
+	"Hungarian":    "hu",
+	"Italian":      "it",
+	"Japanese":     "ja",
+	"Korean":       "ko",
+	"Lithuanian":   "lt",
+	"Norwegian":    "no",
+	"Polish":       "pl",
+	"PortugueseBR": "pt-BR",
+	"Romanian":     "ro",
+	"Russian":      "ru",
+	"SpanishES":    "es-ES",
+	"Sweedish":     "sv-SE",
+	"Thai":         "th",
+	"Turkish":      "tr",
+	"Ukrainian":    "uk",
+	"Vietnamese":   "vi",
+}
