@@ -2,7 +2,7 @@ package rest
 
 // A map with the language names as keys and the language codes as values
 // https://discord.com/developers/docs/reference#locales
-var Locale map[string]string = map[string]string{
+var Locale = map[string]string{
 	"Bulgarian":    "bg",
 	"ChineseCN":    "zh-CN",
 	"ChineseTW":    "zh-TW",
