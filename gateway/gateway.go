@@ -1,31 +1,35 @@
 package gateway
 
+import (
+	"github.com/denkylabs/discord-api-types-go/payloads/v10/guilds"
+)
+
 const GatewayVersion string = "10"
 
 // https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-opcodes
 const (
 	// A event was dispatched
-	GatewayOpcodesDispatch int = 0
+	GatewayOpcodesDispatch uint16 = iota
 	// A heartbeat was received
-	GatewayOpcodesHeartbeat int = 1
+	GatewayOpcodesHeartbeat
 	// Starts a new session during the initial handshake
-	GatewayOpcodesIdentify int = 2
+	GatewayOpcodesIdentify
 	// Update the client's presence
-	GatewayOpcodesPresenceUpdate int = 3
+	GatewayOpcodesPresenceUpdate
 	// Used to join/leave or move between voice channels
-	GatewayOpcodesVoiceStateUpdate int = 4
+	GatewayOpcodesVoiceStateUpdate
 	// Resume a previous session that was disconnected
-	GatewayOpcodesResume int = 6
+	GatewayOpcodesResume uint16 = 6
 	// You should attempt to reconnect and resume immediately
-	GatewayOpcodesReconnect int = 7
+	GatewayOpcodesReconnect uint16 = 7
 	// Request information about offline guild members in a large guild
-	GatewayOpcodesRequestGuildMembers int = 8
+	GatewayOpcodesRequestGuildMembers uint16 = 8
 	// The session has been invalidated. You should reconnect and identify/resume accordingly
-	GatewayOpcodesInvalidSession int = 9
+	GatewayOpcodesInvalidSession uint16 = 9
 	// Sent immediately after connecting, contains the heartbeat_interval to use
-	GatewayOpcodesHello int = 10
+	GatewayOpcodesHello uint16 = 10
 	// 	Sent in response to receiving a heartbeat to acknowledge that it has been received
-	GatewayOpcodesHeartbeatACK int = 11
+	GatewayOpcodesHeartbeatACK uint16 = 11
 )
 
 //https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
@@ -214,7 +218,7 @@ type GatewayReadyDispatchData struct {
 	// See https://discord.com/developers/docs/resources/user#user-object
 	User map[string]interface{} // TODO: Implement APIUser type
 	// The guilds the user is in. See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
-	Guilds []map[string]interface{} // TODO: Implement APIUnavailableGuild type
+	Guilds guilds.APIUnavailableGuild
 	// Used for resuming connections
 	SessionId string
 	// The shard information associated with this session, if sent when identifying. See https://discord.com/developers/docs/topics/gateway#sharding
@@ -292,20 +296,20 @@ type GatewayGuildModifyDispatch struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
-type GatewayGuildModifyDispatchData interface{} // TODO: Implement APIGuild type
+type GatewayGuildModifyDispatchData guilds.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
 type GatewayGuildCreateDispatch GatewayGuildModifyDispatch
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
 // https://discord.com/developers/docs/topics/gateway#guild-create-guild-create-extra-fields
-type GatewayGuildCreateDispatchData interface{} // TODO: Implement APIGuild type
+type GatewayGuildCreateDispatchData guilds.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
 type GatewayGuildUpdateDispatch GatewayGuildModifyDispatch
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
-type GatewayGuildUpdateDispatchData interface{} // TODO: Implement APIGuild type
+type GatewayGuildUpdateDispatchData guilds.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-delete
 type GatewayGuildDeleteDispatch struct {
@@ -319,7 +323,7 @@ type GatewayGuildDeleteDispatch struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-delete
-type GatewayGuildDeleteDispatchData interface{} // TODO: Implement APIUnavailableGuild type
+type GatewayGuildDeleteDispatchData guilds.APIUnavailableGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-ban-add
 // https://discord.com/developers/docs/topics/gateway#guild-ban-remove
