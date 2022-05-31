@@ -14,9 +14,9 @@ type APIRole struct {
 	// If this role is pinned in the user listing
 	Hoist bool `json:"hoist"`
 	// The role icon hash
-	Icon string `json:"icon,omitempty"`
+	Icon string `json:"icon"`
 	// The role unicode emoji as a standard emoji
-	UnicodeEmoji string `json:"unicode_emoji,omitempty"`
+	UnicodeEmoji string `json:"unicode_emoji"`
 	// Position of this role
 	Position int `json:"position"`
 	// Permission bit set
@@ -27,15 +27,15 @@ type APIRole struct {
 	// Whether this role is mentionable
 	Mentionable bool `json:"mentionable"`
 	// The tags this role has
-	Tags APIRoleTags `json:"tags,omitempty"`
+	Tags APIRoleTags `json:"tags"`
 }
 
 // https://discord.com/developers/docs/topics/permissions#role-object-role-tags-structure
 type APIRoleTags struct {
 	// The id of the bot this role belongs to
-	BotId globals.Snowflake `json:"bot_id,omitempty"`
+	BotId globals.Snowflake `json:"bot_id"`
 	// Whether this is the guild's premium subscriber role
-	PremiumSubscriber interface{} `json:"premium_subscriber,omitempty"`
+	PremiumSubscriber interface{} `json:"premium_subscriber"`
 	// The id of the integration this role belongs to
-	IntegrationId globals.Snowflake `json:"integration_id,omitempty"`
+	IntegrationId globals.Snowflake `json:"integration_id"`
 }
