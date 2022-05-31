@@ -41,6 +41,10 @@ The exports of each API version is split into three main parts:
 - [Discord Developers server](https://discord.gg/discord-developers)
 
 ## Compatibility
-<a href="https://github.com/denkylabs/discord-api-types-go/actions"><img src="https://github.com/denkylabs/discord-api-types-go/actions/workflows/go-1.18.yml/badge.svg" alt="Tests status" /></a> <a href="https://github.com/denkylabs/discord-api-types-go/actions"><img src="https://github.com/denkylabs/discord-api-types-go/actions/workflows/go-1.17.yml/badge.svg" alt="Tests status" /></a> <a href="https://github.com/denkylabs/discord-api-types-go/actions"><img src="https://github.com/denkylabs/discord-api-types-go/actions/workflows/go-1.16.yml/badge.svg" alt="Tests status" /></a>
+| Go version          |  Status             |
+| ------------------- | ------------------- |
+|  Go 1.18  |  <a href="https://github.com/denkylabs/discord-api-types-go/actions"><img src="https://github.com/denkylabs/discord-api-types-go/actions/workflows/go-1.18.yml/badge.svg" alt="Tests status" /></a> |
+| Go 1.17  |  <a href="https://github.com/denkylabs/discord-api-types-go/actions"><img src="https://github.com/denkylabs/discord-api-types-go/actions/workflows/go-1.17.yml/badge.svg" alt="Tests status" /></a> |
+| Go 1.16  |  <a href="https://github.com/denkylabs/discord-api-types-go/actions"><img src="https://github.com/denkylabs/discord-api-types-go/actions/workflows/go-1.16.yml/badge.svg" alt="Tests status" /></a> |
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
