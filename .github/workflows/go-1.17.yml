@@ -1,4 +1,4 @@
-name: Build with Go 1.17
+name: Build
 
 on:
   push:
