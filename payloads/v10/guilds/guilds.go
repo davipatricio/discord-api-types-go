@@ -129,6 +129,9 @@ type APIGuild struct {
 	// Default message notifications level
 	// See https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
 	DefaultMessageNotifications int `json:"default_message_notifications"`
+	// Explicit content filter level
+	// See https://discord.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level
+	ExplicitContentFilter int `json:"explicit_content_filter"`
 	// The welcome screen of a Community guild, shown to new members
 	// Returned in the invite object
 	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen"`
