@@ -126,6 +126,9 @@ type APIGuild struct {
 	// Verification level required for the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-verification-level
 	VerificationLevel int `json:"verification_level"`
+	// Default message notifications level
+	// See https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
+	DefaultMessageNotifications int `json:"default_message_notifications"`
 	// The welcome screen of a Community guild, shown to new members
 	// Returned in the invite object
 	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen"`
