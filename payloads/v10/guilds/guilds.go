@@ -1,6 +1,9 @@
 package guilds
 
-import "github.com/denkylabs/discord-api-types-go/globals"
+import (
+	"github.com/denkylabs/discord-api-types-go/globals"
+	"github.com/denkylabs/discord-api-types-go/payloads/v10/permissions"
+)
 
 // https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
 const (
@@ -132,6 +135,9 @@ type APIGuild struct {
 	// Explicit content filter level
 	// See https://discord.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level
 	ExplicitContentFilter int `json:"explicit_content_filter"`
+	// Roles in the guild
+	// See https://discord.com/developers/docs/topics/permissions#role-object
+	Roles permissions.APIRole `json:"roles"`
 	// The welcome screen of a Community guild, shown to new members
 	// Returned in the invite object
 	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen"`
