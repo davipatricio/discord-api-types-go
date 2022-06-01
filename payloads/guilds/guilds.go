@@ -5,61 +5,6 @@ import (
 	"github.com/denkylabs/discord-api-types-go/payloads/permissions"
 )
 
-// https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
-const (
-	GuildDefaultMessageNotificationsAllMessages uint16 = iota
-	GuildDefaultMessageNotificationsOnlyMentions
-)
-
-// https://discord.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level
-const (
-	GuildExplicitContentFilterDisabled uint16 = iota
-	GuildExplicitContentFilterMembersWithoutRoles
-	GuildExplicitContentFilterAllMembers
-)
-
-// https://discord.com/developers/docs/resources/guild#guild-object-guild-nsfw-level
-const (
-	GuildNSFWLevelDefault uint16 = iota
-	GuildNSFWLevelExplicit
-	GuildNSFWLevelSafe
-	GuildNSFWLevelAgeRestricted
-)
-
-// https://discord.com/developers/docs/resources/guild#guild-object-verification-level
-const (
-	// Unrestricted
-	GuildVerificationLevelNone uint16 = iota
-	// Must have verified email on account
-	GuildVerificationLevelLow
-	// Must be registered on Discord for longer than 5 minutes
-	GuildVerificationLevelMedium
-	// Must be a member of the guild for longer than 10 minutes
-	GuildVerificationLevelHigh
-	// Must have a verified phone number
-	GuildVerificationLevelVeryHigh
-)
-
-// https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
-const (
-	GuildMFALevelNone uint16 = iota
-	GuildMFALevelElevated
-)
-
-// https://discord.com/developers/docs/resources/guild#guild-object-premium-tier
-const (
-	GuildPremiumTierNone uint16 = iota
-	GuildPremiumTierTier1
-	GuildPremiumTierTier2
-	GuildPremiumTierTier3
-)
-
-const (
-	GuildHubTypeDefault uint16 = iota
-	GuildHubTypeHighSchool
-	GuildHubTypeCollege
-)
-
 // https://discord.com/developers/docs/resources/guild#unavailable-guild-object
 type APIUnavailableGuild struct {
 	// Guild id
@@ -142,6 +87,61 @@ type APIGuild struct {
 	// Returned in the invite object
 	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen,omitempty"`
 }
+
+// https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
+const (
+	GuildDefaultMessageNotificationsAllMessages int = iota
+	GuildDefaultMessageNotificationsOnlyMentions
+)
+
+// https://discord.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level
+const (
+	GuildExplicitContentFilterDisabled int = iota
+	GuildExplicitContentFilterMembersWithoutRoles
+	GuildExplicitContentFilterAllMembers
+)
+
+// https://discord.com/developers/docs/resources/guild#guild-object-guild-nsfw-level
+const (
+	GuildNSFWLevelDefault int = iota
+	GuildNSFWLevelExplicit
+	GuildNSFWLevelSafe
+	GuildNSFWLevelAgeRestricted
+)
+
+// https://discord.com/developers/docs/resources/guild#guild-object-verification-level
+const (
+	// Unrestricted
+	GuildVerificationLevelNone uint16 = iota
+	// Must have verified email on account
+	GuildVerificationLevelLow
+	// Must be registered on Discord for longer than 5 minutes
+	GuildVerificationLevelMedium
+	// Must be a member of the guild for longer than 10 minutes
+	GuildVerificationLevelHigh
+	// Must have a verified phone number
+	GuildVerificationLevelVeryHigh
+)
+
+// https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
+const (
+	GuildMFALevelNone int = iota
+	GuildMFALevelElevated
+)
+
+// https://discord.com/developers/docs/resources/guild#guild-object-premium-tier
+const (
+	GuildPremiumTierNone int = iota
+	GuildPremiumTierTier1
+	GuildPremiumTierTier2
+	GuildPremiumTierTier3
+)
+
+const (
+	GuildHubTypeDefault int = iota
+	GuildHubTypeHighSchool
+	GuildHubTypeCollege
+)
 
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
