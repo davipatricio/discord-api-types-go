@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"github.com/denkylabs/discord-api-types-go/payloads/v10/guilds"
+	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
 )
 
 const GatewayVersion string = "10"

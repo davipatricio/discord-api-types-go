@@ -2,7 +2,7 @@ package guilds
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/v10/permissions"
+	"github.com/denkylabs/discord-api-types-go/payloads/permissions"
 )
 
 // https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
