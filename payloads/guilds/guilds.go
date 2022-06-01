@@ -83,9 +83,61 @@ type APIGuild struct {
 	// Roles in the guild
 	// See https://discord.com/developers/docs/topics/permissions#role-object
 	Roles permissions.APIRole `json:"roles"`
+	// Custom guild emojis
+	// See https://discord.com/developers/docs/resources/emoji#emoji-object
+	Emojis []interface{} `json:"emojis"` // TODO: APIEmoji
+	// Enabled guild features
+	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
+	Features []interface{} `json:"features,omitempty"` // TODO: Guild features
+	// Required MFA level for the guild
+	// See https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
+	MFALevel int `json:"mfa_level"`
+	// Application id of the guild creator if it is bot-created
+	ApplicationId globals.Snowflake `json:"application_id,omitempty"`
+	// The id of the channel where guild notices such as welcome messages and boost events are posted
+	SystemChannelId globals.Snowflake `json:"system_channel_id,omitempty"`
+	// System channel flags
+	// See https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
+	SystemChannelFlags int `json:"system_channel_flags,omitempty"`
+	// The id of the channel where Community guilds can display rules and/or guidelines
+	RulesChannelId globals.Snowflake `json:"rules_channel_id,omitempty"`
+	// The maximum number of presences for the guild (`null` is always returned, apart from the largest of guilds)
+	MaxPresences int `json:"max_presences,omitempty"`
+	// The maximum number of members for the guild
+	MaxMembers int `json:"max_members,omitempty"`
+	// The vanity url code for the guild
+	VanityURLCode string `json:"vanity_url_code,omitempty"`
+	// Banner hash
+	// See https://discord.com/developers/docs/reference#image-formatting
+	Banner string `json:"banner,omitempty"`
+	// Premium tier (Server Boost level)
+	// See https://discord.com/developers/docs/resources/guild#guild-object-premium-tier
+	PremiumTier int `json:"premium_tier,omitempty"`
+	// The number of boosts this guild currently has
+	PremiumSubscriptionCount int `json:"premium_subscription_count,omitempty"`
+	// The preferred locale of a Community guild; used in guild discovery and notices from Discord; defaults to "en-US"
+	PreferredLocale string `json:"preferred_locale,omitempty"`
+	// The id of the channel where admins and moderators of Community guilds receive notices from Discord
+	PublicUpdatesChannelId globals.Snowflake `json:"public_updates_channel_id,omitempty"`
+	// The maximum amount of users in a video channel
+	MaxVideoChannelUsers int `json:"max_video_channel_users,omitempty"`
+	//  **This field is only received from https://discord.com/developers/docs/resources/guild#get-guild with the `with_counts` query parameter set to `true`**
+	ApproximateMemberCount int `json:"approximate_member_count,omitempty"`
+	// **This field is only received from https://discord.com/developers/docs/resources/guild#get-guild with the `with_counts` query parameter set to `true`**
+	ApproximatePresenceCount int `json:"approximate_presence_count,omitempty"`
 	// The welcome screen of a Community guild, shown to new members
 	// Returned in the invite object
 	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen,omitempty"`
+	// The nsfw level of the guild
+	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-nsfw-level
+	NSFWLevel int `json:"nsfw_level"`
+	// Custom guild stickers
+	// See https://discord.com/developers/docs/resources/sticker#sticker-object
+	Stickers []interface{} `json:"stickers,omitempty"` // TODO: APISticker
+	// Whether the guild has the boost progress bar enabled
+	PremiumProgressBarEnabled bool `json:"premium_progress_bar_enabled,omitempty"`
+	// The type of Student Hub the guild is
+	HubType int `json:"hub_type,omitempty"`
 }
 
 // https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
@@ -142,6 +194,17 @@ const (
 	GuildHubTypeHighSchool
 	GuildHubTypeCollege
 )
+
+// https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
+const (
+	// Suppress member join notifications
+	GuildSystemChannelFlagsSuppressJoinNotifications int = 1 << 0
+	// Suppress server boost notifications
+	GuildSystemChannelFlagsSuppressPremiumSubscriptions int = 1 << 1
+	// Suppress server setup tips
+	GuildSystemChannelFlagsSuppressGuildReminderNotifications int = 1 << 2
+	// Hide member join sticker reply buttons
+	GuildSystemChannelFlagsSuppressJoinNotificationReplies int = 1 << 3
 
 // https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 const (
