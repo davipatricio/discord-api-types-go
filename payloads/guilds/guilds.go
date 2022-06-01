@@ -143,6 +143,18 @@ const (
 	GuildHubTypeCollege
 )
 
+// https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
+const (
+	// Suppress member join notifications
+	GuildSystemChannelFlagsSuppressJoinNotifications int = 1 << 0
+	// Suppress server boost notifications
+	GuildSystemChannelFlagsSuppressPremiumSubscriptions int = 1 << 1
+	// Suppress server setup tips
+	GuildSystemChannelFlagsSuppressGuildReminderNotifications int = 1 << 2
+	// Hide member join sticker reply buttons
+	GuildSystemChannelFlagsSuppressJoinNotificationReplies int = 1 << 3
+)
+
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
 	Description string `json:"description,omitempty"`
