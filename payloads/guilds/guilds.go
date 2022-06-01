@@ -143,6 +143,61 @@ const (
 	GuildHubTypeCollege
 )
 
+// https://discord.com/developers/docs/resources/guild#guild-object-guild-features
+const (
+	// Guild has access to set an animated guild banner image
+	GuildFeatureAnimatedBanner = "ANIMATED_BANNER"
+	// Guild has access to set an animated guild icon
+	GuildFeatureAnimatedIcon = "ANIMATED_ICON"
+	//  Guild has access to set a guild banner image
+	GuildFeatureBanner = "BANNER"
+	// Guild has access to use commerce features (i.e. create store channels)
+	GuildFeatureCommerce = "COMMERCE"
+	// Guild can enable welcome screen, Membership Screening and discovery, and receives community updates
+	GuildFeatureCommunity = "COMMUNITY"
+	// Guild is able to be discovered in the directory
+	GuildFeatureDiscoverable = "DISCOVERABLE"
+	// Guild is able to be featured in the directory
+	GuildFeatureFeaturable = "FEATURABLE"
+	// Guild is listed in a directory channel
+	GuildFeatureHasDirectoryEntry = "HAS_DIRECTORY_ENTRY"
+	// Guild is a Student Hub
+	// See https://support.discord.com/hc/en-us/articles/4406046651927-Discord-Student-Hubs-FAQ
+	GuildFeatureHub = "HUB"
+	// Guild has access to set an invite splash background
+	GuildFeatureInviteSplash = "INVITE_SPLASH"
+	// Guild is in a Student Hub
+	// See https://support.discord.com/hc/en-us/articles/4406046651927-Discord-Student-Hubs-FAQ
+	GuildFeatureLinkedToHub = "LINKED_TO_HUB"
+	// Guild has enabled Membership Screening
+	GuildFeatureMemberVerificationGateEnabled = "MEMBER_VERIFICATION_GATE_ENABLED"
+	// Guild has enabled monetization
+	GuildFeatureMonetizationEnabled = "MONETIZATION_ENABLED"
+	// Guild has increased custom sticker slots
+	GuildFeatureMoreStickers = "MORE_STICKERS"
+	// Guild has access to create news channels
+	GuildFeatureNews = "NEWS"
+	// Guild is partnered
+	GuildFeaturePartnered = "PARTNERED"
+	// Guild can be previewed before joining via Membership Screening or the directory
+	GuildFeaturePreviewEnabled = "PREVIEW_ENABLED"
+	// Guild has access to create private threads
+	GuildFeaturePrivateThreads = "PRIVATE_THREADS"
+	GuildFeatureRelayEnabled = "RELAY_ENABLED"
+	// Guild is able to set role icons
+	GuildFeatureRoleIcons = "ROLE_ICONS"
+	// Guild has enabled ticketed events
+	GuildFeatureTicketedEventsEnabled = "TICKETED_EVENTS_ENABLED"
+	// Guild has access to set a vanity URL
+	GuildFeatureVanityURL = "VANITY_URL"
+	// Guild is verified
+	GuildFeatureVerified = "VERIFIED"
+	// Guild has access to set 384kbps bitrate in voice (previously VIP voice servers)
+	GuildFeatureVIPRegions = "VIP_REGIONS"
+	// Guild has enabled the welcome screen
+	GuildFeatureWelcomeScreenEnabled = "WELCOME_SCREEN_ENABLED"
+)
+
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
 	Description string `json:"description,omitempty"`
