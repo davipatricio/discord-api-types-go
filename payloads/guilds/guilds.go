@@ -205,6 +205,7 @@ const (
 	GuildSystemChannelFlagsSuppressGuildReminderNotifications int = 1 << 2
 	// Hide member join sticker reply buttons
 	GuildSystemChannelFlagsSuppressJoinNotificationReplies int = 1 << 3
+)
 
 // https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 const (
@@ -246,7 +247,7 @@ const (
 	GuildFeaturePreviewEnabled = "PREVIEW_ENABLED"
 	// Guild has access to create private threads
 	GuildFeaturePrivateThreads = "PRIVATE_THREADS"
-	GuildFeatureRelayEnabled = "RELAY_ENABLED"
+	GuildFeatureRelayEnabled   = "RELAY_ENABLED"
 	// Guild is able to set role icons
 	GuildFeatureRoleIcons = "ROLE_ICONS"
 	// Guild has enabled ticketed events
