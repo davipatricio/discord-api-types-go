@@ -1,4 +1,4 @@
-package payloads
+package generic
 
 // A map with the permission names as keys and the permission numbers as values
 // https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
