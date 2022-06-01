@@ -25,52 +25,52 @@ type APIPartialGuild struct {
 	Splash string `json:"splash"`
 	// Banner hash
 	// See https://discord.com/developers/docs/reference#image-formatting
-	Banner string `json:"banner,omitempty"`
+	Banner string `json:"banner"`
 	// The description for the guild
-	Description string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
-	Features []interface{} `json:"features,omitempty"` // TODO: Guild features
+	Features []interface{} `json:"features"` // TODO: Guild features
 	// Verification level required for the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-verification-level
-	VerificationLevel int `json:"verification_level,omitempty"`
+	VerificationLevel int `json:"verification_level"`
 	// The vanity url code for the guild
-	VanityURLCode string `json:"vanity_url_code,omitempty"`
+	VanityURLCode string `json:"vanity_url_code"`
 	// `true` if this guild is unavailable due to an outage
-	Unavailable bool `json:"unavailable,omitempty"`
+	Unavailable bool `json:"unavailable"`
 	// HACK: This should be the same as APIGuild
-	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen,omitempty"`
+	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen"`
 }
 
 // https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
 type APIGuild struct {
 	// Icon hash, returned when in the template object
 	// See https://discord.com/developers/docs/reference#image-formatting
-	IconHash string `json:"icon_hash,omitempty"`
+	IconHash string `json:"icon_hash"`
 	// Discovery splash hash; only present for guilds with the "DISCOVERABLE" feature
 	// See https://discord.com/developers/docs/reference#image-formatting
-	DiscoverySplash string `json:"discovery_splash,omitempty"`
+	DiscoverySplash string `json:"discovery_splash"`
 	// `true` if the user is the owner of the guild
 	// This field is only received from https://discord.com/developers/docs/resources/user#get-current-user-guilds
-	Owner bool `json:"owner,omitempty"`
+	Owner bool `json:"owner"`
 	// ID of owner
 	OwnerID globals.Snowflake `json:"owner_id"`
 	// Total permissions for the user in the guild (excludes overrides)
 	// This field is only received from https://discord.com/developers/docs/resources/user#get-current-user-guilds
 	// See https://en.wikipedia.org/wiki/Bit_field
-	Permissions globals.Permissions `json:"permissions,omitempty"`
+	Permissions globals.Permissions `json:"permissions"`
 	// Voice region id for the guild
 	// See https://discord.com/developers/docs/resources/voice#voice-region-object
 	// @deprecated This field has been deprecated in favor of `rtc_region` on the channel.
 	Region string `json:"region"`
 	// ID of afk channel
-	AfkChannelId globals.Snowflake `json:"afk_channel_id,omitempty"`
+	AfkChannelId globals.Snowflake `json:"afk_channel_id"`
 	// AFK timeout in seconds
 	AfkTimeout int `json:"afk_timeout"`
 	// `true` if the guild widget is enabled
-	WidgetEnabled bool `json:"widget_enabled,omitempty"`
+	WidgetEnabled bool `json:"widget_enabled"`
 	// The channel id that the widget will generate an invite to, or `null` if set to no invite
-	WidgetChannelId globals.Snowflake `json:"widget_channel_id,omitempty"`
+	WidgetChannelId globals.Snowflake `json:"widget_channel_id"`
 	// Verification level required for the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-verification-level
 	VerificationLevel int `json:"verification_level"`
@@ -88,56 +88,56 @@ type APIGuild struct {
 	Emojis []interface{} `json:"emojis"` // TODO: APIEmoji
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
-	Features []interface{} `json:"features,omitempty"` // TODO: Guild features
+	Features []interface{} `json:"features"` // TODO: Guild features
 	// Required MFA level for the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
 	MFALevel int `json:"mfa_level"`
 	// Application id of the guild creator if it is bot-created
-	ApplicationId globals.Snowflake `json:"application_id,omitempty"`
+	ApplicationId globals.Snowflake `json:"application_id"`
 	// The id of the channel where guild notices such as welcome messages and boost events are posted
-	SystemChannelId globals.Snowflake `json:"system_channel_id,omitempty"`
+	SystemChannelId globals.Snowflake `json:"system_channel_id"`
 	// System channel flags
 	// See https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
-	SystemChannelFlags int `json:"system_channel_flags,omitempty"`
+	SystemChannelFlags int `json:"system_channel_flags"`
 	// The id of the channel where Community guilds can display rules and/or guidelines
-	RulesChannelId globals.Snowflake `json:"rules_channel_id,omitempty"`
+	RulesChannelId globals.Snowflake `json:"rules_channel_id"`
 	// The maximum number of presences for the guild (`null` is always returned, apart from the largest of guilds)
-	MaxPresences int `json:"max_presences,omitempty"`
+	MaxPresences int `json:"max_presences"`
 	// The maximum number of members for the guild
-	MaxMembers int `json:"max_members,omitempty"`
+	MaxMembers int `json:"max_members"`
 	// The vanity url code for the guild
-	VanityURLCode string `json:"vanity_url_code,omitempty"`
+	VanityURLCode string `json:"vanity_url_code"`
 	// Banner hash
 	// See https://discord.com/developers/docs/reference#image-formatting
-	Banner string `json:"banner,omitempty"`
+	Banner string `json:"banner"`
 	// Premium tier (Server Boost level)
 	// See https://discord.com/developers/docs/resources/guild#guild-object-premium-tier
-	PremiumTier int `json:"premium_tier,omitempty"`
+	PremiumTier int `json:"premium_tier"`
 	// The number of boosts this guild currently has
-	PremiumSubscriptionCount int `json:"premium_subscription_count,omitempty"`
+	PremiumSubscriptionCount int `json:"premium_subscription_count"`
 	// The preferred locale of a Community guild; used in guild discovery and notices from Discord; defaults to "en-US"
-	PreferredLocale string `json:"preferred_locale,omitempty"`
+	PreferredLocale string `json:"preferred_locale"`
 	// The id of the channel where admins and moderators of Community guilds receive notices from Discord
-	PublicUpdatesChannelId globals.Snowflake `json:"public_updates_channel_id,omitempty"`
+	PublicUpdatesChannelId globals.Snowflake `json:"public_updates_channel_id"`
 	// The maximum amount of users in a video channel
-	MaxVideoChannelUsers int `json:"max_video_channel_users,omitempty"`
-	//  **This field is only received from https://discord.com/developers/docs/resources/guild#get-guild with the `with_counts` query parameter set to `true`**
-	ApproximateMemberCount int `json:"approximate_member_count,omitempty"`
+	MaxVideoChannelUsers int `json:"max_video_channel_users"`
 	// **This field is only received from https://discord.com/developers/docs/resources/guild#get-guild with the `with_counts` query parameter set to `true`**
-	ApproximatePresenceCount int `json:"approximate_presence_count,omitempty"`
+	ApproximateMemberCount int `json:"approximate_member_count"`
+	// **This field is only received from https://discord.com/developers/docs/resources/guild#get-guild with the `with_counts` query parameter set to `true`**
+	ApproximatePresenceCount int `json:"approximate_presence_count"`
 	// The welcome screen of a Community guild, shown to new members
 	// Returned in the invite object
-	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen,omitempty"`
+	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen"`
 	// The nsfw level of the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-nsfw-level
 	NSFWLevel int `json:"nsfw_level"`
 	// Custom guild stickers
 	// See https://discord.com/developers/docs/resources/sticker#sticker-object
-	Stickers []interface{} `json:"stickers,omitempty"` // TODO: APISticker
+	Stickers []interface{} `json:"stickers"` // TODO: APISticker
 	// Whether the guild has the boost progress bar enabled
-	PremiumProgressBarEnabled bool `json:"premium_progress_bar_enabled,omitempty"`
+	PremiumProgressBarEnabled bool `json:"premium_progress_bar_enabled"`
 	// The type of Student Hub the guild is
-	HubType int `json:"hub_type,omitempty"`
+	HubType int `json:"hub_type"`
 }
 
 // https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
@@ -209,7 +209,7 @@ const (
 
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
-	Description string `json:"description,omitempty"`
+	Description string `json:"description"`
 	// Array of suggested channels
 	WelcomeChannels []APIGuildWelcomeScreenChannel `json:"welcome_channels"`
 }
@@ -220,7 +220,7 @@ type APIGuildWelcomeScreenChannel struct {
 	/// The description shown for the channel
 	Description string `json:"description"`
 	// The emoji id of the emoji that is shown on the left of the channel
-	EmojiId globals.Snowflake `json:"emoji_id,omitempty"`
+	EmojiId globals.Snowflake `json:"emoji_id"`
 	// The emoji name of the emoji that is shown on the left of the channel
-	EmojiName string `json:"emoji_name,omitempty"`
+	EmojiName string `json:"emoji_name"`
 }
