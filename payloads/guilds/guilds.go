@@ -30,7 +30,7 @@ type APIPartialGuild struct {
 	Description string `json:"description"`
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
-	Features []interface{} `json:"features"` // TODO: Guild features
+	Features []string `json:"features"`
 	// Verification level required for the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-verification-level
 	VerificationLevel int `json:"verification_level"`
@@ -88,7 +88,7 @@ type APIGuild struct {
 	Emojis []interface{} `json:"emojis"` // TODO: APIEmoji
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
-	Features []interface{} `json:"features"` // TODO: Guild features
+	Features []string `json:"features"`
 	// Required MFA level for the guild
 	// See https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
 	MFALevel int `json:"mfa_level"`
