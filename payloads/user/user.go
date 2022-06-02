@@ -81,7 +81,7 @@ const (
 )
 
 // https://discord.com/developers/docs/resources/user#connection-object
-type APIConnetion struct {
+type APIConnection struct {
 	// ID of the connection account
 	Id string `json:"id"`
 	// The username of the connection account
