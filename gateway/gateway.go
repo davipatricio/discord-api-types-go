@@ -2,6 +2,7 @@ package gateway
 
 import (
 	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
+	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 const GatewayVersion string = "10"
@@ -216,7 +217,7 @@ type GatewayReadyDispatchData struct {
 	V int
 	// Information about the user including email.
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User map[string]interface{} // TODO: Implement APIUser type
+	User user.APIUser // TODO: Implement APIUser type
 	// The guilds the user is in. See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
 	Guilds guilds.APIUnavailableGuild
 	// Used for resuming connections
@@ -343,7 +344,7 @@ type GatewayGuildBanModifyDispatchData struct {
 	// ID of the guild
 	GuildId string `json:"guild_id"`
 	// The banned user. See https://discord.com/developers/docs/resources/user#user-object
-	User interface{} `json:"user"` // TODO: Implement APIUser type
+	User user.APIUser `json:"user"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-ban-add
@@ -446,7 +447,7 @@ type GatewayGuildMemberRemoveDispatchData struct { // TODO: Implement APIGuildMe
 	// The id of the guild
 	GuildId string `json:"guild_id"`
 	// The user who was removed
-	User interface{} `json:"user"` // TODO: Implement APIUser type
+	User user.APIUser `json:"user"`
 }
 
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
