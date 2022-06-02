@@ -198,7 +198,7 @@ const (
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-image-widget-style-options
 const (
 	// Shield style widget with Discord icon and guild members online count
-	GuildWidgetStyleShield  = "shield"
+	GuildWidgetStyleShield = "shield"
 	// Large image with guild icon, name and online count. "POWERED BY DISCORD" as the footer of the widget
 	GuildWidgetStyleBanner1 = "banner1"
 	// Smaller widget style with guild icon, name and online count. Split on the right with Discord logo
@@ -276,6 +276,37 @@ const (
 	// Guild has enabled the welcome screen
 	GuildFeatureWelcomeScreenEnabled = "WELCOME_SCREEN_ENABLED"
 )
+
+// https://discord.com/developers/docs/resources/guild#guild-preview-object
+type APIGuildPreview struct {
+	// Guild id
+	Id globals.Snowflake `json:"id"`
+	// Guild name (2-100 characters)
+	Name string `json:"name"`
+	// Icon hash
+	// See https://discord.com/developers/docs/reference#image-formatting
+	Icon string `json:"icon"`
+	// Splash hash
+	// See https://discord.com/developers/docs/reference#image-formatting
+	Splash string `json:"splash"`
+	// Discovery splash hash; only present for guilds with the "DISCOVERABLE" feature
+	// See https://discord.com/developers/docs/reference#image-formatting
+	DiscoverySplash string `json:"discovery_splash"`
+	// Custom guild emojis
+	// See https://discord.com/developers/docs/resources/emoji#emoji-object
+	Emojis []interface{} `json:"emojis"` // TODO: APIEmoji
+	// Enabled guild features
+	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
+	Features []string `json:"features"`
+	// Approximate number of members in this guild
+	ApproximateMemberCount int `json:"approximate_member_count"`
+	// Approximate number of online members in this guild
+	ApproximatePresenceCount int `json:"approximate_presence_count"`
+	// The description for the guild
+	Description string `json:"description"`
+	// Custom guild stickers
+	Stickers []interface{} `json:"stickers"` // TODO: APISticker
+}
 
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
