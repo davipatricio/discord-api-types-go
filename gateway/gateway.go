@@ -1,6 +1,7 @@
 package gateway
 
 import (
+	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
 	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
 )
 
@@ -374,7 +375,7 @@ type GatewayGuildEmojisUpdateDispatchData struct {
 	// ID of the guild
 	GuildId string `json:"guild_id"`
 	// Array of emojis. See https://discord.com/developers/docs/resources/emoji#emoji-object
-	Emojis []interface{} `json:"emojis"` // TODO: Implement APIEmoji type
+	Emojis []emojis.APIEmoji `json:"emojis"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-stickers-update

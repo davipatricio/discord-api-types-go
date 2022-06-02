@@ -2,6 +2,7 @@ package guilds
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
+	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
 	"github.com/denkylabs/discord-api-types-go/payloads/permissions"
 )
 
@@ -38,7 +39,8 @@ type APIPartialGuild struct {
 	VanityURLCode string `json:"vanity_url_code"`
 	// `true` if this guild is unavailable due to an outage
 	Unavailable bool `json:"unavailable"`
-	// HACK: This should be the same as APIGuild
+	// The welcome screen of a Community guild, shown to new members
+	// Returned in the invite object
 	WelcomeScreen APIGuildWelcomeScreen `json:"welcome_screen"`
 }
 
@@ -85,7 +87,7 @@ type APIGuild struct {
 	Roles permissions.APIRole `json:"roles"`
 	// Custom guild emojis
 	// See https://discord.com/developers/docs/resources/emoji#emoji-object
-	Emojis []interface{} `json:"emojis"` // TODO: APIEmoji
+	Emojis []emojis.APIEmoji `json:"emojis"`
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 	Features []interface{} `json:"features"` // TODO: Guild features
