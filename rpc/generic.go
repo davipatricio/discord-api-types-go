@@ -1,31 +1,37 @@
 package rpc
 
 // https://discord.com/developers/docs/topics/opcodes-and-status-codes#rpc-rpc-error-codes
-const (
-	RPCErrorrUnknownError                   int = 1000
-	RPCErrorInvalidPayload                  int = 4000
-	RPCErrorInvalidCommand                  int = 4002
-	RPCErrorInvalidGuild                    int = 4003
-	RPCErrorInvalidEvent                    int = 4004
-	RPCErrorInvalidChannel                  int = 4005
-	RPCErrorInvalidPermissions              int = 4006
-	RPCErrorInvalidClientId                 int = 4007
-	RPCErrorInvalidOrigin                   int = 4008
-	RPCErrorInvalidToken                    int = 4009
-	RPCErrorInvalidUser                     int = 4010
-	RPCErrorOAuth2Error                     int = 5000
-	RPCErrorSelectChannelTimedOut           int = 5001
-	RPCErrorGetGuildTimedOut                int = 5002
-	RPCErrorSelectVoiceForceRequired        int = 5003
-	RPCErrorCaptureShortcutAlreadyListening int = 5004
-)
+type RPCError uint16
 
 // https://discord.com/developers/docs/topics/opcodes-and-status-codes#rpc-rpc-error-codes
 const (
-	RPCCloseEventInvalidClientId int = 4000
-	RPCCloseEventInvalidOrigin   int = 4001
-	RPCCloseEventRateLimited     int = 4002
-	RPCCloseEventTokenRevoked    int = 4003
-	RPCCloseEventInvalidVersion  int = 4004
-	RPCCloseEventInvalidEncoding int = 4005
+	RPCErrorrUnknownError                   RPCError = 1000
+	RPCErrorInvalidPayload                  RPCError = 4000
+	RPCErrorInvalidCommand                  RPCError = 4002
+	RPCErrorInvalidGuild                    RPCError = 4003
+	RPCErrorInvalidEvent                    RPCError = 4004
+	RPCErrorInvalidChannel                  RPCError = 4005
+	RPCErrorInvalidPermissions              RPCError = 4006
+	RPCErrorInvalidClientId                 RPCError = 4007
+	RPCErrorInvalidOrigin                   RPCError = 4008
+	RPCErrorInvalidToken                    RPCError = 4009
+	RPCErrorInvalidUser                     RPCError = 4010
+	RPCErrorOAuth2Error                     RPCError = 5000
+	RPCErrorSelectChannelTimedOut           RPCError = 5001
+	RPCErrorGetGuildTimedOut                RPCError = 5002
+	RPCErrorSelectVoiceForceRequired        RPCError = 5003
+	RPCErrorCaptureShortcutAlreadyListening RPCError = 5004
+)
+
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#rpc-rpc-error-codes
+type RPCCloseEvent uint16
+
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#rpc-rpc-error-codes
+const (
+	RPCCloseEventInvalidClientId RPCCloseEvent = 4000
+	RPCCloseEventInvalidOrigin   RPCCloseEvent = 4001
+	RPCCloseEventRateLimited     RPCCloseEvent = 4002
+	RPCCloseEventTokenRevoked    RPCCloseEvent = 4003
+	RPCCloseEventInvalidVersion  RPCCloseEvent = 4004
+	RPCCloseEventInvalidEncoding RPCCloseEvent = 4005
 )

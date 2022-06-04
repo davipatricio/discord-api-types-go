@@ -1,36 +1,38 @@
 package rest
 
-// A map with the language names as keys and the language codes as values
 // https://discord.com/developers/docs/reference#locales
-var Locale = map[string]string{
-	"Bulgarian":    "bg",
-	"ChineseCN":    "zh-CN",
-	"ChineseTW":    "zh-TW",
-	"Croatian":     "hr",
-	"Czech":        "cs",
-	"Danish":       "da",
-	"Dutch":        "nl",
-	"EnglishGB":    "en-GB",
-	"EnglishUS":    "en-US",
-	"Finnish":      "fi",
-	"French":       "fr",
-	"German":       "de",
-	"Greek":        "el",
-	"Hindi":        "hi",
-	"Hungarian":    "hu",
-	"Italian":      "it",
-	"Japanese":     "ja",
-	"Korean":       "ko",
-	"Lithuanian":   "lt",
-	"Norwegian":    "no",
-	"Polish":       "pl",
-	"PortugueseBR": "pt-BR",
-	"Romanian":     "ro",
-	"Russian":      "ru",
-	"SpanishES":    "es-ES",
-	"Sweedish":     "sv-SE",
-	"Thai":         "th",
-	"Turkish":      "tr",
-	"Ukrainian":    "uk",
-	"Vietnamese":   "vi",
-}
+type Locale string
+
+// https://discord.com/developers/docs/reference#locales
+const (
+	LocaleBulgarian    Locale = "bg"
+	LocaleChineseCN    Locale = "zh-CN"
+	LocaleChineseTW    Locale = "zh-TW"
+	LocaleCroatian     Locale = "hr"
+	LocaleCzech        Locale = "cs"
+	LocaleDanish       Locale = "da"
+	LocaleDutch        Locale = "nl"
+	LocaleEnglishGB    Locale = "en-GB"
+	LocaleEnglishUS    Locale = "en-US"
+	LocaleFinnish      Locale = "fi"
+	LocaleFrench       Locale = "fr"
+	LocaleGerman       Locale = "de"
+	LocaleGreek        Locale = "el"
+	LocaleHindi        Locale = "hi"
+	LocaleHungarian    Locale = "hu"
+	LocaleItalian      Locale = "it"
+	LocaleJapanese     Locale = "ja"
+	LocaleKorean       Locale = "ko"
+	LocaleLithuanian   Locale = "lt"
+	LocaleNorwegian    Locale = "no"
+	LocalePolish       Locale = "pl"
+	LocalePortugueseBR Locale = "pt-BR"
+	LocaleRomanian     Locale = "ro"
+	LocaleRussian      Locale = "ru"
+	LocaleSpanishES    Locale = "es-ES"
+	LocaleSwedish      Locale = "sv-SE"
+	LocaleThai         Locale = "th"
+	LocaleTurkish      Locale = "tr"
+	LocaleUkrainian    Locale = "uk"
+	LocaleVietnamese   Locale = "vi"
+)

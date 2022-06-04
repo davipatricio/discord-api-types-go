@@ -1,47 +1,49 @@
 package generic
 
-// A map with the permission names as keys and the permission numbers as values
 // https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
-var PermissionFlagsBits = map[string]uint64{
-	"CreateInstantInvite":     1 << 0,
-	"KickMembers":             1 << 1,
-	"BanMembers":              1 << 2,
-	"Administrator":           1 << 3,
-	"ManageChannels":          1 << 4,
-	"ManageGuild":             1 << 5,
-	"AddReactions":            1 << 6,
-	"ViewAuditLog":            1 << 7,
-	"PrioritySpeaker":         1 << 8,
-	"Stream":                  1 << 9,
-	"ViewChannel":             1 << 10,
-	"SendMessages":            1 << 11,
-	"SendTTSMessages":         1 << 12,
-	"ManageMessages":          1 << 13,
-	"EmbedLinks":              1 << 14,
-	"AttachFiles":             1 << 15,
-	"ReadMessageHistory":      1 << 16,
-	"MentionEveryone":         1 << 17,
-	"UseExternalEmojis":       1 << 18,
-	"ViewGuildInsights":       1 << 19,
-	"Connect":                 1 << 20,
-	"Speak":                   1 << 21,
-	"MuteMembers":             1 << 22,
-	"DeafenMembers":           1 << 23,
-	"MoveMembers":             1 << 24,
-	"UseVAD":                  1 << 25,
-	"ChangeNickname":          1 << 26,
-	"ManageNicknames":         1 << 27,
-	"ManageRoles":             1 << 28,
-	"ManageWebhooks":          1 << 29,
-	"ManageEmojisAndStickers": 1 << 30,
-	"UseApplicationCommands":  1 << 31,
-	"RequestToSpeak":          1 << 32,
-	"ManageEvents":            1 << 33,
-	"ManageThreads":           1 << 34,
-	"CreatePublicThreads":     1 << 35,
-	"CreatePrivateThreads":    1 << 36,
-	"UseExternalStickers":     1 << 37,
-	"SendMessagesInThreads":   1 << 38,
-	"UseEmbeddedActivities":   1 << 39,
-	"ModerateMembers":         1 << 40,
-}
+type PermissionFlagsBits uint64
+
+// https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
+const (
+	PermissionFlagsBitsCreateInstantInvite     PermissionFlagsBits = 1 << 0
+	PermissionFlagsBitsKickMembers             PermissionFlagsBits = 1 << 1
+	PermissionFlagsBitsBanMembers              PermissionFlagsBits = 1 << 2
+	PermissionFlagsBitsAdministrator           PermissionFlagsBits = 1 << 3
+	PermissionFlagsBitsManageChannels          PermissionFlagsBits = 1 << 4
+	PermissionFlagsBitsManageGuild             PermissionFlagsBits = 1 << 5
+	PermissionFlagsBitsAddReactions            PermissionFlagsBits = 1 << 6
+	PermissionFlagsBitsViewAuditLog            PermissionFlagsBits = 1 << 7
+	PermissionFlagsBitsPrioritySpeaker         PermissionFlagsBits = 1 << 8
+	PermissionFlagsBitsStream                  PermissionFlagsBits = 1 << 9
+	PermissionFlagsBitsViewChannel             PermissionFlagsBits = 1 << 10
+	PermissionFlagsBitsSendMessages            PermissionFlagsBits = 1 << 11
+	PermissionFlagsBitsSendTTSMessages         PermissionFlagsBits = 1 << 12
+	PermissionFlagsBitsManageMessages          PermissionFlagsBits = 1 << 13
+	PermissionFlagsBitsEmbedLinks              PermissionFlagsBits = 1 << 14
+	PermissionFlagsBitsAttachFiles             PermissionFlagsBits = 1 << 15
+	PermissionFlagsBitsReadMessageHistory      PermissionFlagsBits = 1 << 16
+	PermissionFlagsBitsMentionEveryone         PermissionFlagsBits = 1 << 17
+	PermissionFlagsBitsUseExternalEmojis       PermissionFlagsBits = 1 << 18
+	PermissionFlagsBitsViewGuildInsights       PermissionFlagsBits = 1 << 19
+	PermissionFlagsBitsConnect                 PermissionFlagsBits = 1 << 20
+	PermissionFlagsBitsSpeak                   PermissionFlagsBits = 1 << 21
+	PermissionFlagsBitsMuteMembers             PermissionFlagsBits = 1 << 22
+	PermissionFlagsBitsDeafenMembers           PermissionFlagsBits = 1 << 23
+	PermissionFlagsBitsMoveMembers             PermissionFlagsBits = 1 << 24
+	PermissionFlagsBitsUseVAD                  PermissionFlagsBits = 1 << 25
+	PermissionFlagsBitsChangeNickname          PermissionFlagsBits = 1 << 26
+	PermissionFlagsBitsManageNicknames         PermissionFlagsBits = 1 << 27
+	PermissionFlagsBitsManageRoles             PermissionFlagsBits = 1 << 28
+	PermissionFlagsBitsManageWebhooks          PermissionFlagsBits = 1 << 29
+	PermissionFlagsBitsManageEmojisAndStickers PermissionFlagsBits = 1 << 30
+	PermissionFlagsBitsUseApplicationCommands  PermissionFlagsBits = 1 << 31
+	PermissionFlagsBitsRequestToSpeak          PermissionFlagsBits = 1 << 32
+	PermissionFlagsBitsManageEvents            PermissionFlagsBits = 1 << 33
+	PermissionFlagsBitsManageThreads           PermissionFlagsBits = 1 << 34
+	PermissionFlagsBitsCreatePublicThreads     PermissionFlagsBits = 1 << 35
+	PermissionFlagsBitsCreatePrivateThreads    PermissionFlagsBits = 1 << 36
+	PermissionFlagsBitsUseExternalStickers     PermissionFlagsBits = 1 << 37
+	PermissionFlagsBitsSendMessagesInThreads   PermissionFlagsBits = 1 << 38
+	PermissionFlagsBitsUseEmbeddedActivities   PermissionFlagsBits = 1 << 39
+	PermissionFlagsBitsModerateMembers         PermissionFlagsBits = 1 << 40
+)

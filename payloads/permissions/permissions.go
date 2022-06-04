@@ -18,7 +18,7 @@ type APIRole struct {
 	// The role unicode emoji as a standard emoji
 	UnicodeEmoji string `json:"unicode_emoji"`
 	// Position of this role
-	Position int `json:"position"`
+	Position uint16 `json:"position"`
 	// Permission bit set
 	// See https://en.wikipedia.org/wiki/Bit_field
 	Permissions globals.Permissions `json:"permissions"`

@@ -30,52 +30,60 @@ type APIUser struct {
 	Email string `json:"email"`
 	// The flags on a user's account
 	// See https://discord.com/developers/docs/resources/user#user-object-user-flags
-	Flags int `json:"flags"`
+	Flags UserFlags `json:"flags"`
 	// The type of Nitro subscription on a user's account
 	// See https://discord.com/developers/docs/resources/user#user-object-premium-types
-	PremiumType int `json:"premium_type"`
+	PremiumType UserPremiumType `json:"premium_type"`
 	// The public flags on a user's account
 	// See https://discord.com/developers/docs/resources/user#user-object-user-flags
-	PublicFlags int `json:"public_flags"`
+	PublicFlags UserFlags `json:"public_flags"`
 }
+
+// https://discord.com/developers/docs/resources/user#user-object-user-flags
+type UserFlags uint32
 
 // https://discord.com/developers/docs/resources/user#user-object-user-flags
 const (
 	// Discord Employee
-	UserFlagsStaff int = 1 << 0
+	UserFlagsStaff UserFlags = 1 << 0
 	// Partnered Server Owner
-	UserFlagsPartner int = 1 << 1
+	UserFlagsPartner UserFlags = 1 << 1
 	// HypeSquad Events Member
-	UserFlagsHypesquad int = 1 << 2
+	UserFlagsHypesquad UserFlags = 1 << 2
 	// Bug Hunter Level 1
-	UserFlagsBugHunterLevel1 int = 1 << 3
+	UserFlagsBugHunterLevel1 UserFlags = 1 << 3
 	// House Bravery Member
-	UserFlagsHypeSquadOnlineHouse1 int = 1 << 6
+	UserFlagsHypeSquadOnlineHouse1 UserFlags = 1 << 6
 	// House Brilliance Member
-	UserFlagsHypeSquadOnlineHouse2 int = 1 << 7
+	UserFlagsHypeSquadOnlineHouse2 UserFlags = 1 << 7
 	// House Balance Member
-	UserFlagsHypeSquadOnlineHouse3 int = 1 << 8
+	UserFlagsHypeSquadOnlineHouse3 UserFlags = 1 << 8
 	// Early Nitro Supporter
-	UserFlagsPremiumEarlySupporter int = 1 << 9
-	// User is a [team](https://discord.com/developers/docs/topics/teams)
-	UserFlagsTeamPseudoUser int = 1 << 10
+	UserFlagsPremiumEarlySupporter UserFlags = 1 << 9
+	// User is a team
+	// See https://discord.com/developers/docs/topics/teams
+	UserFlagsTeamPseudoUser UserFlags = 1 << 10
 	// Bug Hunter Level 2
-	BugHunterLevel2 int = 1 << 14
+	UserFlagsBugHunterLevel2 UserFlags = 1 << 14
 	// Verified Bot
-	VerifiedBot int = 1 << 16
+	UserFlagsVerifiedBot UserFlags = 1 << 16
 	// Early Verified Bot Developer
-	VerifiedDeveloper int = 1 << 17
+	UserFlagsVerifiedDeveloper UserFlags = 1 << 17
 	// Discord Certified Moderator
-	CertifiedModerator int = 1 << 18
-	// Bot uses only [HTTP interactions](https://discord.com/developers/docs/interactions/receiving-and-responding#receiving-an-interaction) and is shown in the online member list
-	BotHTTPInteractions int = 1 << 19
+	UserFlagsCertifiedModerator UserFlags = 1 << 18
+	// Bot uses only HTTP interactions and is shown in the online member list
+	// See https://discord.com/developers/docs/interactions/receiving-and-responding#receiving-an-interaction
+	UserFlagsBotHTTPInteractions UserFlags = 1 << 19
 	// User has been identified as spammer
-	Spammer int = 1 << 20
+	UserFlagsSpammer UserFlags = 1 << 20
 )
 
 // https://discord.com/developers/docs/resources/user#user-object-premium-types
+type UserPremiumType uint16
+
+// https://discord.com/developers/docs/resources/user#user-object-premium-types
 const (
-	UserPremiumTypeNone int = iota
+	UserPremiumTypeNone UserPremiumType = iota
 	UserPremiumTypeNitroClassic
 	UserPremiumTypeNitro
 )
@@ -83,7 +91,7 @@ const (
 // https://discord.com/developers/docs/resources/user#connection-object
 type APIConnection struct {
 	// ID of the connection account
-	Id string `json:"id"`
+	Id globals.Snowflake `json:"id"`
 	// The username of the connection account
 	Name string `json:"name"`
 	// The service of the connection
@@ -101,12 +109,18 @@ type APIConnection struct {
 	ShowActivity bool `json:"show_activity"`
 	// Visibility of this connection
 	// See https://discord.com/developers/docs/resources/user#connection-object-visibility
-	Visibility int `json:"visibility"`
+	Visibility ConnectionVisibility `json:"visibility"`
 }
 
+// Visibility of this connection
+// See https://discord.com/developers/docs/resources/user#connection-object-visibility
+type ConnectionVisibility uint16
+
+// Visibility of this connection
+// See https://discord.com/developers/docs/resources/user#connection-object-visibility
 const (
 	// Invisible to everyone except the user themselves
-	ConnectionVisibilityNone int = iota
+	ConnectionVisibilityNone ConnectionVisibility = iota
 	// Visible to everyone
 	ConnectionVisibilityEveryone
 )
