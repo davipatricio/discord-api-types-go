@@ -3,6 +3,7 @@ package guilds
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
 	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
+	"github.com/denkylabs/discord-api-types-go/payloads/gateway"
 	"github.com/denkylabs/discord-api-types-go/payloads/permissions"
 	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
@@ -451,11 +452,11 @@ type APIGuildWidgetChannel struct {
 
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
 type APIGuildWidgetMember struct {
-	Id            globals.Snowflake `json:"id"`
-	Username      string            `json:"username"`
-	Discriminator string            `json:"discriminator"`
-	Avatar        string            `json:"avatar"`
-	Status        interface{}       `json:"status"` // TODO: PresenceUpdateStatus
+	Id            globals.Snowflake            `json:"id"`
+	Username      string                       `json:"username"`
+	Discriminator string                       `json:"discriminator"`
+	Avatar        string                       `json:"avatar"`
+	Status        gateway.PresenceUpdateStatus `json:"status"`
 	Activity      struct {
 		Name string `json:"name"`
 	} `json:"activity"`
