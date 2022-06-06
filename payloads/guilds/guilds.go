@@ -455,3 +455,30 @@ type APIGuildWelcomeScreenChannel struct {
 	// The emoji name of the emoji that is shown on the left of the channel
 	EmojiName string `json:"emoji_name"`
 }
+
+type APIGuildMembershipScreening struct {
+	// When the fields were last updated
+	Version string `json:"version"`
+	// The steps in the screening form
+	FormFields []APIGuildMembershipScreeningField `json:"form_fields"`
+	// The server description shown in the screening form
+	Description string `json:"description"`
+}
+
+type APIGuildMembershipScreeningField struct {
+	// The type of the field
+	Type MembershipScreeningFieldType `json:"type"`
+	// The title of the field
+	Label string `json:"label"`
+	// The list of rules
+	Rules []string `json:"rules"`
+	// Whether the user has to fill out this field
+	Required bool `json:"required"`
+}
+
+type MembershipScreeningFieldType string
+
+const (
+	// Server Rules
+	MembershipScreeningFieldTypeTerms MembershipScreeningFieldType = "TERMS"
+)
