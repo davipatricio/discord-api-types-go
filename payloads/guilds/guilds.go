@@ -295,7 +295,7 @@ const (
 	GuildFeaturePreviewEnabled GuildFeature = "PREVIEW_ENABLED"
 	// Guild has access to create private threads
 	GuildFeaturePrivateThreads GuildFeature = "PRIVATE_THREADS"
-	GuildFeatureRelayEnabled   GuildFeature = "RELAY_ENABLED"
+	GuildFeatureRelayEnabled GuildFeature = "RELAY_ENABLED"
 	// Guild is able to set role icons
 	GuildFeatureRoleIcons GuildFeature = "ROLE_ICONS"
 	// Guild has enabled ticketed events
