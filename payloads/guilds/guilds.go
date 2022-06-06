@@ -212,30 +212,12 @@ const (
 	GuildPremiumTierTier3
 )
 
-type GuildHubType uint16
+type GuildHubType uint8
 
 const (
 	GuildHubTypeDefault GuildHubType = iota
 	GuildHubTypeHighSchool
 	GuildHubTypeCollege
-)
-
-// https://discord.com/developers/docs/resources/guild#get-guild-widget-image-widget-style-options
-type GuildWidgetStyle string
-
-// https://discord.com/developers/docs/resources/guild#get-guild-widget-image-widget-style-options
-const (
-	// Shield style widget with Discord icon and guild members online count
-	GuildWidgetStyleShield GuildWidgetStyle = "shield"
-	// Large image with guild icon, name and online count. "POWERED BY DISCORD" as the footer of the widget
-	GuildWidgetStyleBanner1 GuildWidgetStyle = "banner1"
-	// Smaller widget style with guild icon, name and online count. Split on the right with Discord logo
-	GuildWidgetStyleBanner2 GuildWidgetStyle = "banner2"
-	// Large image with guild icon, name and online count. In the footer, Discord logo on the left and "Chat Now" on the right
-	GuildWidgetStyleBanner3 GuildWidgetStyle = "banner3"
-	// Large Discord logo at the top of the widget. Guild icon, name and online count in the middle portion of the widget
-	// and a "JOIN MY SERVER" button at the bottom
-	GuildWidgetStyleBanner4 GuildWidgetStyle = "banner4"
 )
 
 // https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
@@ -350,6 +332,10 @@ type APIGuildWidgetSettings struct {
 	ChannelId globals.Snowflake `json:"channel_id"`
 }
 
+// TODO: APIGuildMember
+// https://discord.com/developers/docs/resources/guild#guild-member-object
+type APIGuildMember struct{}
+
 // https://discord.com/developers/docs/resources/guild#integration-object
 type APIGuildIntegration struct {
 	// Integration id
@@ -437,6 +423,40 @@ type APIGuildIntegrationApplication struct {
 	// See https://discord.com/developers/docs/resources/user#user-object
 	Bot user.APIUser `json:"bot"`
 }
+
+// TODO: APIBan
+// https://discord.com/developers/docs/resources/guild#ban-object
+type APIBan struct{}
+
+// TODO: APIGuildWidget
+// https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
+type APIGuildWidget struct{}
+
+// TODO: APIGuildWidgetChannel
+// https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
+type APIGuildWidgetChannel struct{}
+
+// TODO: APIGuildWidgetMember
+// https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
+type APIGuildWidgetMember struct{}
+
+// https://discord.com/developers/docs/resources/guild#get-guild-widget-image-widget-style-options
+type GuildWidgetStyle string
+
+// https://discord.com/developers/docs/resources/guild#get-guild-widget-image-widget-style-options
+const (
+	// Shield style widget with Discord icon and guild members online count
+	GuildWidgetStyleShield GuildWidgetStyle = "shield"
+	// Large image with guild icon, name and online count. "POWERED BY DISCORD" as the footer of the widget
+	GuildWidgetStyleBanner1 GuildWidgetStyle = "banner1"
+	// Smaller widget style with guild icon, name and online count. Split on the right with Discord logo
+	GuildWidgetStyleBanner2 GuildWidgetStyle = "banner2"
+	// Large image with guild icon, name and online count. In the footer, Discord logo on the left and "Chat Now" on the right
+	GuildWidgetStyleBanner3 GuildWidgetStyle = "banner3"
+	// Large Discord logo at the top of the widget. Guild icon, name and online count in the middle portion of the widget
+	// and a "JOIN MY SERVER" button at the bottom
+	GuildWidgetStyleBanner4 GuildWidgetStyle = "banner4"
+)
 
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
