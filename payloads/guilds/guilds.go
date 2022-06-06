@@ -424,9 +424,13 @@ type APIGuildIntegrationApplication struct {
 	Bot user.APIUser `json:"bot"`
 }
 
-// TODO: APIBan
 // https://discord.com/developers/docs/resources/guild#ban-object
-type APIBan struct{}
+type APIBan struct {
+	// The reason for the ban
+	Reason string `json:"reason"`
+	// The banned user
+	User user.APIUser `json:"user"`
+}
 
 // TODO: APIGuildWidget
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
