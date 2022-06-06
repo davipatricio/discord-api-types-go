@@ -428,17 +428,35 @@ type APIGuildIntegrationApplication struct {
 // https://discord.com/developers/docs/resources/guild#ban-object
 type APIBan struct{}
 
-// TODO: APIGuildWidget
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
-type APIGuildWidget struct{}
+type APIGuildWidget struct {
+	Id            globals.Snowflake       `json:"id"`
+	Name          string                  `json:"name"`
+	InstantInvite string                  `json:"instant_invite"`
+	Channels      []APIGuildWidgetChannel `json:"channels"`
+	Members       []APIGuildWidgetMember  `json:"members"`
+	PresenceCount uint32                  `json:"presence_count"`
+}
 
-// TODO: APIGuildWidgetChannel
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
-type APIGuildWidgetChannel struct{}
+type APIGuildWidgetChannel struct {
+	Id       globals.Snowflake `json:"id"`
+	Name     string            `json:"name"`
+	Position uint32            `json:"position"`
+}
 
-// TODO: APIGuildWidgetMember
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
-type APIGuildWidgetMember struct{}
+type APIGuildWidgetMember struct {
+	Id            globals.Snowflake `json:"id"`
+	Username      string            `json:"username"`
+	Discriminator string            `json:"discriminator"`
+	Avatar        string            `json:"avatar"`
+	Status        interface{}       `json:"status"` // TODO: PresenceUpdateStatus
+	Activity      struct {
+		Name string `json:"name"`
+	} `json:"activity"`
+	AvatarURL string `json:"avatar_url"`
+}
 
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-image-widget-style-options
 type GuildWidgetStyle string
