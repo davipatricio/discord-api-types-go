@@ -4,6 +4,7 @@ import (
 	"github.com/denkylabs/discord-api-types-go/globals"
 	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
 	"github.com/denkylabs/discord-api-types-go/payloads/permissions"
+	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 // https://discord.com/developers/docs/resources/guild#unavailable-guild-object
@@ -295,7 +296,7 @@ const (
 	GuildFeaturePreviewEnabled GuildFeature = "PREVIEW_ENABLED"
 	// Guild has access to create private threads
 	GuildFeaturePrivateThreads GuildFeature = "PRIVATE_THREADS"
-	GuildFeatureRelayEnabled GuildFeature = "RELAY_ENABLED"
+	GuildFeatureRelayEnabled   GuildFeature = "RELAY_ENABLED"
 	// Guild is able to set role icons
 	GuildFeatureRoleIcons GuildFeature = "ROLE_ICONS"
 	// Guild has enabled ticketed events
@@ -347,6 +348,94 @@ type APIGuildWidgetSettings struct {
 	Enabled bool `json:"enabled"`
 	// The widget channel id
 	ChannelId globals.Snowflake `json:"channel_id"`
+}
+
+// https://discord.com/developers/docs/resources/guild#integration-object
+type APIGuildIntegration struct {
+	// Integration id
+	Id globals.Snowflake `json:"id"`
+	// Integration name
+	Name string `json:"name"`
+	// Integration type
+	Type APIGuildIntegrationType `json:"type"`
+	// Is this integration enabled
+	Enabled bool `json:"enabled"`
+	// Is this integration syncing
+	// This field is not provided for `discord` bot integrations.
+	Syncing bool `json:"syncing"`
+	// ID that this integration uses for "subscribers"
+	// This field is not provided for `discord` bot integrations.
+	RoleId globals.Snowflake `json:"role_id"`
+	// Whether emoticons should be synced for this integration (`twitch` only currently)
+	// This field is not provided for `discord` bot integrations.
+	EnableEmoticons bool `json:"enable_emoticons"`
+	// The behavior of expiring subscribers
+	//This field is not provided for `discord` bot integrations.
+	// See https://discord.com/developers/docs/resources/guild#integration-object-integration-expire-behaviors
+	ExpireBehavior IntegrationExpireBehavior `json:"expire_behavior"`
+	// The grace period (in days) before expiring subscribers
+	// This field is not provided for `discord` bot integrations.
+	ExpireGracePeriod uint16 `json:"expire_grace_period"`
+	// User for this integration
+	// This field is not provided for `discord` bot integrations.
+	// See https://discord.com/developers/docs/resources/user#user-object
+	User user.APIUser `json:"user"`
+	// Integration account information
+	// See https://discord.com/developers/docs/resources/guild#integration-account-object
+	Account APIIntegrationAccount `json:"account"`
+	// When this integration was last synced
+	// This field is not provided for `discord` bot integrations.
+	SyncedAt string `json:"synced_at"`
+	// How many subscribers this integration has
+	// This field is not provided for `discord` bot integrations.
+	SubscriberCount uint32 `json:"subscriber_count"`
+	// Has this integration been revoked
+	// This field is not provided for `discord` bot integrations.
+	Revoked bool `json:"revoked"`
+	// The bot/OAuth2 application for discord integrations
+	// See https://discord.com/developers/docs/resources/guild#integration-application-object
+	// This field is not provided for `discord` bot integrations.
+	Application APIGuildIntegrationApplication `json:"application"`
+}
+
+type APIGuildIntegrationType string
+
+const (
+	APIGuildIntegrationTypeTwitch  APIGuildIntegrationType = "twitch"
+	APIGuildIntegrationTypeYouTube APIGuildIntegrationType = "youtube"
+	APIGuildIntegrationTypeDiscord APIGuildIntegrationType = "discord"
+)
+
+// https://discord.com/developers/docs/resources/guild#integration-object-integration-expire-behaviors
+type IntegrationExpireBehavior uint8
+
+// https://discord.com/developers/docs/resources/guild#integration-object-integration-expire-behaviors
+const (
+	IntegrationExpireBehaviorRemoveRole IntegrationExpireBehavior = iota
+	IntegrationExpireBehaviorKick
+)
+
+// https://discord.com/developers/docs/resources/guild#integration-account-object
+type APIIntegrationAccount struct {
+	// ID of the account
+	Id string `json:"id"`
+	// Name of the account
+	Name string `json:"name"`
+}
+
+type APIGuildIntegrationApplication struct {
+	// The id of the app
+	Id globals.Snowflake `json:"id"`
+	// The name of the app
+	Name string `json:"name"`
+	// The icon hash of the app
+	// See https://discord.com/developers/docs/reference#image-formatting
+	Icon string `json:"icon"`
+	// The description of the app
+	Description string `json:"description"`
+	// The bot associated with this application
+	// See https://discord.com/developers/docs/resources/user#user-object
+	Bot user.APIUser `json:"bot"`
 }
 
 type APIGuildWelcomeScreen struct {
