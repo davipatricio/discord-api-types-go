@@ -1,6 +1,9 @@
 package user
 
-import "github.com/denkylabs/discord-api-types-go/globals"
+import (
+	"github.com/denkylabs/discord-api-types-go/globals"
+	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
+)
 
 // https://discord.com/developers/docs/resources/user#user-object
 type APIUser struct {
@@ -100,7 +103,7 @@ type APIConnection struct {
 	Revoked bool `json:"revoked"`
 	// An array of partial server integrations
 	// See https://discord.com/developers/docs/resources/guild#integration-object
-	Integrations []interface{} `json:"integrations"` // TODO: APIGuildIntegration
+	Integrations guilds.APIGuildIntegration `json:"integrations"`
 	// Whether the connection is verified
 	Verified bool `json:"verified"`
 	// Whether friend sync is enabled for this connection
