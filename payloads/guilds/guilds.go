@@ -341,6 +341,14 @@ type APIGuildPreview struct {
 	Stickers []interface{} `json:"stickers"` // TODO: APISticker
 }
 
+// https://discord.com/developers/docs/resources/guild#guild-widget-object
+type APIGuildWidgetSettings struct {
+	// Whether the widget is enabled
+	Enabled bool `json:"enabled"`
+	// The widget channel id
+	ChannelId globals.Snowflake `json:"channel_id"`
+}
+
 type APIGuildWelcomeScreen struct {
 	// The welcome screen short message
 	Description string `json:"description"`
