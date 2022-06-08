@@ -143,7 +143,7 @@ type GatewayActivityParty struct {
 	Id globals.Snowflake `json:"id"`
 	// Used to show the party's current and maximum size
 	//  [current_size: uint32, max_size: uint32]
-	Size []uint32 `json:"size"`
+	Size [2]uint32 `json:"size"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#activity-object-activity-assets
