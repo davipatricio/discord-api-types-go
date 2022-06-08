@@ -311,7 +311,7 @@ type APIGuildPreview struct {
 	DiscoverySplash string `json:"discovery_splash"`
 	// Custom guild emojis
 	// See https://discord.com/developers/docs/resources/emoji#emoji-object
-	Emojis []interface{} `json:"emojis"` // TODO: APIEmoji
+	Emojis emojis.APIEmoji `json:"emojis"`
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 	Features []GuildFeature `json:"features"`
