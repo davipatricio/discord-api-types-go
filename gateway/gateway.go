@@ -229,18 +229,18 @@ type GatewayReadyDispatch struct {
 type GatewayReadyDispatchData struct {
 	// Gateway version.
 	// See https://discord.com/developers/docs/topics/gateway#gateways-gateway-versions
-	V int
+	V int `json:"v"`
 	// Information about the user including email.
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User user.APIUser // TODO: Implement APIUser type
+	User user.APIUser `json:"user"`
 	// The guilds the user is in. See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
-	Guilds guilds.APIUnavailableGuild
+	Guilds guilds.APIUnavailableGuild `json:"guilds"`
 	// Used for resuming connections
-	SessionId string
+	SessionId string `json:"session_id"`
 	// The shard information associated with this session, if sent when identifying. See https://discord.com/developers/docs/topics/gateway#sharding
-	Shard []GatewayShard
+	Shard []GatewayShard `json:"shard"`
 	// Contains 'id' and 'flags' properties
-	Application application.APIApplication
+	Application application.APIApplication `json:"application"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#resumed
