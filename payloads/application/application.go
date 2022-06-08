@@ -2,6 +2,7 @@ package application
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
+	"github.com/denkylabs/discord-api-types-go/payloads/oauth2"
 	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
@@ -54,7 +55,7 @@ type APIApplication struct {
 }
 
 type APIApplicationInstallParams struct {
-	Scopes      []interface{}       `json:"scopes"` // TODO: OAuth2Scopes
+	Scopes      oauth2.OAuth2Scopes `json:"scopes"`
 	Permissions globals.Permissions `json:"permissions"`
 }
 
