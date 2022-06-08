@@ -1,9 +1,7 @@
-package gateway
+package payloads
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
-	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 // https://discord.com/developers/docs/topics/gateway#get-gateway
@@ -42,7 +40,7 @@ type GatewayPresenceUpdate struct {
 	// The user object within this event can be partial, the only field which must be sent is the `id` field,
 	// everything else is optional.
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User user.APIUser `json:"user"`
+	User APIUser `json:"user"`
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
 	// Either "idle", "dnd", "online", or "offline"
@@ -97,8 +95,8 @@ type GatewayActivity struct {
 	State string `json:"state"`
 	// The emoji used for a custom status
 	// See https://discord.com/developers/docs/topics/gateway#activity-object-activity-emoji
-	Emoji GatewayActivityEmoji `json:"emoji"`
-	SessionId string `json:"session_id"`
+	Emoji     GatewayActivityEmoji `json:"emoji"`
+	SessionId string               `json:"session_id"`
 	// Information for the current party of the player
 	// See https://discord.com/developers/docs/topics/gateway#activity-object-activity-party
 	Party GatewayActivityParty `json:"party"`
@@ -135,7 +133,7 @@ type GatewayActivityTimestamps struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#activity-object-activity-emoji
-type GatewayActivityEmoji emojis.APIEmoji
+type GatewayActivityEmoji APIEmoji
 
 // https://discord.com/developers/docs/topics/gateway#activity-object-activity-party
 type GatewayActivityParty struct {

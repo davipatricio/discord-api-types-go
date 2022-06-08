@@ -1,24 +1,21 @@
-package invite
+package payloads
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/application"
-	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
-	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 type APIInviteGuild struct {
-	Id                       globals.Snowflake             `json:"id"`
-	Name                     string                        `json:"name"`
-	Splash                   string                        `json:"splash"`
-	Banner                   string                        `json:"banner"`
-	Icon                     string                        `json:"icon"`
-	VanityURLCode            string                        `json:"vanity_url_code"`
-	Description              string                        `json:"description"`
-	Features                 []guilds.GuildFeature         `json:"features"`
-	VerificationLevel        guilds.GuildVerificationLevel `json:"verification_level"`
-	NSFWLevel                guilds.GuildNSFWLevel         `json:"nsfw_level"`
-	PremiumSubscriptionCount uint32                        `json:"premium_subscription_count"`
+	Id                       globals.Snowflake      `json:"id"`
+	Name                     string                 `json:"name"`
+	Splash                   string                 `json:"splash"`
+	Banner                   string                 `json:"banner"`
+	Icon                     string                 `json:"icon"`
+	VanityURLCode            string                 `json:"vanity_url_code"`
+	Description              string                 `json:"description"`
+	Features                 []GuildFeature         `json:"features"`
+	VerificationLevel        GuildVerificationLevel `json:"verification_level"`
+	NSFWLevel                GuildNSFWLevel         `json:"nsfw_level"`
+	PremiumSubscriptionCount uint32                 `json:"premium_subscription_count"`
 }
 
 // https://discord.com/developers/docs/resources/invite#invite-object
@@ -33,16 +30,16 @@ type APIInvite struct {
 	Channel interface{} `json:"channel"` // TODO: APIChannel
 	// The user who created the invite
 	// See https://discord.com/developers/docs/resources/user#user-object
-	Inviter user.APIUser `json:"inviter"`
+	Inviter APIUser `json:"inviter"`
 	// The type of target for this voice channel invite
 	// See https://discord.com/developers/docs/resources/invite#invite-object-target-user-types
 	TargetType InviteTargetType `json:"target_type"`
 	// The user whose stream to display for this voice channel stream invite
 	// See https://discord.com/developers/docs/resources/user#user-object
-	TargetUser user.APIUser `json:"target_user"`
+	TargetUser APIUser `json:"target_user"`
 	// The embedded application to open for this voice channel embedded application invite
 	// See https://discord.com/developers/docs/topics/oauth2#application
-	TargetApplication application.APIApplication `json:"target_application"`
+	TargetApplication APIApplication `json:"target_application"`
 	// Approximate count of online members, returned from the `GET /invites/<code>` endpoint when `with_counts` is `true`
 	ApproximatePresenceCount uint32 `json:"approximate_presence_count"`
 	// Approximate count of members, returned from the `GET /invites/<code>` endpoint when `with_counts` is `true`
@@ -76,16 +73,16 @@ type APIExtendedInvite struct {
 	Channel interface{} `json:"channel"` // TODO: APIChannel
 	// The user who created the invite
 	// See https://discord.com/developers/docs/resources/user#user-object
-	Inviter user.APIUser `json:"inviter"`
+	Inviter APIUser `json:"inviter"`
 	// The type of target for this voice channel invite
 	// See https://discord.com/developers/docs/resources/invite#invite-object-target-user-types
 	TargetType InviteTargetType `json:"target_type"`
 	// The user whose stream to display for this voice channel stream invite
 	// See https://discord.com/developers/docs/resources/user#user-object
-	TargetUser user.APIUser `json:"target_user"`
+	TargetUser APIUser `json:"target_user"`
 	// The embedded application to open for this voice channel embedded application invite
 	// See https://discord.com/developers/docs/topics/oauth2#application
-	TargetApplication application.APIApplication `json:"target_application"`
+	TargetApplication APIApplication `json:"target_application"`
 	// Approximate count of online members, returned from the `GET /invites/<code>` endpoint when `with_counts` is `true`
 	ApproximatePresenceCount uint32 `json:"approximate_presence_count"`
 	// Approximate count of members, returned from the `GET /invites/<code>` endpoint when `with_counts` is `true`

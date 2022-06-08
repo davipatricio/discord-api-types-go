@@ -1,4 +1,4 @@
-package generic
+package payloads
 
 // https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
 type PermissionFlagsBits uint64

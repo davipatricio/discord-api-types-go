@@ -1,9 +1,7 @@
-package application
+package payloads
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/oauth2"
-	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 // https://discord.com/developers/docs/resources/application#application-object
@@ -28,7 +26,7 @@ type APIApplication struct {
 	PrivacyPolicyUrl string `json:"privacy_policy_url"`
 	// Partial user object containing info on the owner of the application
 	// See https://discord.com/developers/docs/resources/user#user-object
-	Owner user.APIUser `json:"owner"`
+	Owner APIUser `json:"owner"`
 	// The hexadecimal encoded key for verification in interactions and the GameSDK's GetTicket function
 	// See https://discord.com/developers/docs/game-sdk/applications#get-ticket
 	VerifyKey string `json:"verify_key"`
@@ -55,7 +53,7 @@ type APIApplication struct {
 }
 
 type APIApplicationInstallParams struct {
-	Scopes      oauth2.OAuth2Scopes `json:"scopes"`
+	Scopes      OAuth2Scopes        `json:"scopes"`
 	Permissions globals.Permissions `json:"permissions"`
 }
 

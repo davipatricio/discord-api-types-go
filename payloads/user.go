@@ -1,4 +1,4 @@
-package user
+package payloads
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
