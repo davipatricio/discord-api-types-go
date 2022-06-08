@@ -2,6 +2,7 @@ package gateway
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
+	"github.com/denkylabs/discord-api-types-go/payloads/application"
 	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
 	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
 	"github.com/denkylabs/discord-api-types-go/payloads/user"
@@ -239,7 +240,7 @@ type GatewayReadyDispatchData struct {
 	// The shard information associated with this session, if sent when identifying. See https://discord.com/developers/docs/topics/gateway#sharding
 	Shard []GatewayShard `json:"shard"`
 	// Contains 'id' and 'flags' properties
-	Application map[string]interface{} `json:"application"` // TODO: Implement APIApplication type
+	Application application.APIApplication `json:"application"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#resumed
