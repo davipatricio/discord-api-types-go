@@ -1,11 +1,7 @@
-package guilds
+package payloads
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
-	"github.com/denkylabs/discord-api-types-go/payloads/gateway"
-	"github.com/denkylabs/discord-api-types-go/payloads/permissions"
-	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 // https://discord.com/developers/docs/resources/guild#unavailable-guild-object
@@ -88,10 +84,10 @@ type APIGuild struct {
 	ExplicitContentFilter GuildExplicitContentFilterLevel `json:"explicit_content_filter"`
 	// Roles in the guild
 	// See https://discord.com/developers/docs/topics/permissions#role-object
-	Roles []permissions.APIRole `json:"roles"`
+	Roles []APIRole `json:"roles"`
 	// Custom guild emojis
 	// See https://discord.com/developers/docs/resources/emoji#emoji-object
-	Emojis []emojis.APIEmoji `json:"emojis"`
+	Emojis []APIEmoji `json:"emojis"`
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 	Features []GuildFeature `json:"features"`
@@ -311,7 +307,7 @@ type APIGuildPreview struct {
 	DiscoverySplash string `json:"discovery_splash"`
 	// Custom guild emojis
 	// See https://discord.com/developers/docs/resources/emoji#emoji-object
-	Emojis emojis.APIEmoji `json:"emojis"`
+	Emojis APIEmoji `json:"emojis"`
 	// Enabled guild features
 	// See https://discord.com/developers/docs/resources/guild#guild-object-guild-features
 	Features []GuildFeature `json:"features"`
@@ -366,7 +362,7 @@ type APIGuildIntegration struct {
 	// User for this integration
 	// This field is not provided for `discord` bot integrations.
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User user.APIUser `json:"user"`
+	User APIUser `json:"user"`
 	// Integration account information
 	// See https://discord.com/developers/docs/resources/guild#integration-account-object
 	Account APIIntegrationAccount `json:"account"`
@@ -422,7 +418,7 @@ type APIGuildIntegrationApplication struct {
 	Description string `json:"description"`
 	// The bot associated with this application
 	// See https://discord.com/developers/docs/resources/user#user-object
-	Bot user.APIUser `json:"bot"`
+	Bot APIUser `json:"bot"`
 }
 
 // https://discord.com/developers/docs/resources/guild#ban-object
@@ -430,7 +426,7 @@ type APIBan struct {
 	// The reason for the ban
 	Reason string `json:"reason"`
 	// The banned user
-	User user.APIUser `json:"user"`
+	User APIUser `json:"user"`
 }
 
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
@@ -452,11 +448,11 @@ type APIGuildWidgetChannel struct {
 
 // https://discord.com/developers/docs/resources/guild#get-guild-widget-example-get-guild-widget
 type APIGuildWidgetMember struct {
-	Id            globals.Snowflake            `json:"id"`
-	Username      string                       `json:"username"`
-	Discriminator string                       `json:"discriminator"`
-	Avatar        string                       `json:"avatar"`
-	Status        gateway.PresenceUpdateStatus `json:"status"`
+	Id            globals.Snowflake    `json:"id"`
+	Username      string               `json:"username"`
+	Discriminator string               `json:"discriminator"`
+	Avatar        string               `json:"avatar"`
+	Status        PresenceUpdateStatus `json:"status"`
 	Activity      struct {
 		Name string `json:"name"`
 	} `json:"activity"`

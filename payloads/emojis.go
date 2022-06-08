@@ -1,8 +1,7 @@
-package emojis
+package payloads
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/user"
 )
 
 // Not documented but mentioned
@@ -20,7 +19,7 @@ type APIEmoji struct {
 	// Roles this emoji is whitelisted to
 	Roles []globals.Snowflake `json:"roles"`
 	// User that created this emoji
-	User user.APIUser `json:"user"`
+	User APIUser `json:"user"`
 	// Whether this emoji must be wrapped in colons
 	RequiresColons bool `json:"requires_colons"`
 	// Whether this emoji is managed

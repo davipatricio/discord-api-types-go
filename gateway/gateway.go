@@ -2,10 +2,7 @@ package gateway
 
 import (
 	"github.com/denkylabs/discord-api-types-go/globals"
-	"github.com/denkylabs/discord-api-types-go/payloads/application"
-	"github.com/denkylabs/discord-api-types-go/payloads/emojis"
-	"github.com/denkylabs/discord-api-types-go/payloads/guilds"
-	"github.com/denkylabs/discord-api-types-go/payloads/user"
+	"github.com/denkylabs/discord-api-types-go/payloads"
 )
 
 const GatewayVersion string = "10"
@@ -232,15 +229,15 @@ type GatewayReadyDispatchData struct {
 	V int `json:"v"`
 	// Information about the user including email.
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User user.APIUser `json:"user"`
+	User payloads.APIUser `json:"user"`
 	// The guilds the user is in. See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
-	Guilds guilds.APIUnavailableGuild `json:"guilds"`
+	Guilds payloads.APIUnavailableGuild `json:"guilds"`
 	// Used for resuming connections
 	SessionId string `json:"session_id"`
 	// The shard information associated with this session, if sent when identifying. See https://discord.com/developers/docs/topics/gateway#sharding
 	Shard []GatewayShard `json:"shard"`
 	// Contains 'id' and 'flags' properties
-	Application application.APIApplication `json:"application"`
+	Application payloads.APIApplication `json:"application"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#resumed
@@ -312,20 +309,20 @@ type GatewayGuildModifyDispatch struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
-type GatewayGuildModifyDispatchData guilds.APIGuild
+type GatewayGuildModifyDispatchData payloads.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
 type GatewayGuildCreateDispatch GatewayGuildModifyDispatch
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
 // https://discord.com/developers/docs/topics/gateway#guild-create-guild-create-extra-fields
-type GatewayGuildCreateDispatchData guilds.APIGuild
+type GatewayGuildCreateDispatchData payloads.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
 type GatewayGuildUpdateDispatch GatewayGuildModifyDispatch
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
-type GatewayGuildUpdateDispatchData guilds.APIGuild
+type GatewayGuildUpdateDispatchData payloads.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-delete
 type GatewayGuildDeleteDispatch struct {
@@ -339,7 +336,7 @@ type GatewayGuildDeleteDispatch struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-delete
-type GatewayGuildDeleteDispatchData guilds.APIUnavailableGuild
+type GatewayGuildDeleteDispatchData payloads.APIUnavailableGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-ban-add
 // https://discord.com/developers/docs/topics/gateway#guild-ban-remove
@@ -359,7 +356,7 @@ type GatewayGuildBanModifyDispatchData struct {
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
 	// The banned user. See https://discord.com/developers/docs/resources/user#user-object
-	User user.APIUser `json:"user"`
+	User payloads.APIUser `json:"user"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-ban-add
@@ -390,7 +387,7 @@ type GatewayGuildEmojisUpdateDispatchData struct {
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
 	// Array of emojis. See https://discord.com/developers/docs/resources/emoji#emoji-object
-	Emojis []emojis.APIEmoji `json:"emojis"`
+	Emojis []payloads.APIEmoji `json:"emojis"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-stickers-update
@@ -462,7 +459,7 @@ type GatewayGuildMemberRemoveDispatchData struct { // TODO: Implement APIGuildMe
 	// The id of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
 	// The user who was removed
-	User user.APIUser `json:"user"`
+	User payloads.APIUser `json:"user"`
 }
 
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding

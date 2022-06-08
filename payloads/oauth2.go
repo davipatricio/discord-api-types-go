@@ -1,4 +1,4 @@
-package oauth2
+package payloads
 
 type OAuth2Scopes string
 
