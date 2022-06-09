@@ -1,7 +1,9 @@
 package rest
 
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#json-json-error-codes
 type RESTJSONErrorCodes uint32
 
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#json-json-error-codes
 const (
 	RESTJSONErrorCodesGeneralError RESTJSONErrorCodes = iota
 
