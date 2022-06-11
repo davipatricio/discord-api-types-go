@@ -406,7 +406,7 @@ type GatewayGuildStickersUpdateDispatchData struct {
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
 	// Array of stickers. See https://discord.com/developers/docs/resources/sticker#sticker-object
-	Stickers []interface{} `json:"stickers"` // TODO: Implement APISticker type
+	Stickers []payloads.APISticker `json:"stickers"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-integrations-update
