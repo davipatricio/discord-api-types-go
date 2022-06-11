@@ -135,7 +135,7 @@ type APIGuild struct {
 	NSFWLevel GuildNSFWLevel `json:"nsfw_level"`
 	// Custom guild stickers
 	// See https://discord.com/developers/docs/resources/sticker#sticker-object
-	Stickers []interface{} `json:"stickers"` // TODO: APISticker
+	Stickers []APISticker `json:"stickers"`
 	// Whether the guild has the boost progress bar enabled
 	PremiumProgressBarEnabled bool `json:"premium_progress_bar_enabled"`
 	// The type of Student Hub the guild is
@@ -318,7 +318,7 @@ type APIGuildPreview struct {
 	// The description for the guild
 	Description string `json:"description"`
 	// Custom guild stickers
-	Stickers []interface{} `json:"stickers"` // TODO: APISticker
+	Stickers []APISticker `json:"stickers"`
 }
 
 // https://discord.com/developers/docs/resources/guild#guild-widget-object
