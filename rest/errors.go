@@ -73,7 +73,7 @@ const (
 
 	RESTJSONErrorCodesAnnouncementEditLimitExceeded RESTJSONErrorCodes = 20022
 
-	UnderMinimumAge RESTJSONErrorCodes = 20024
+	RESTJSONErrorCodesUnderMinimumAge RESTJSONErrorCodes = 20024
 
 	RESTJSONErrorCodesChannelSendRateLimit RESTJSONErrorCodes = 20028
 	RESTJSONErrorCodesServerSendRateLimit  RESTJSONErrorCodes = 20029
