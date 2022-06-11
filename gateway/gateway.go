@@ -84,23 +84,23 @@ type Intent uint32
 
 // https://discord.com/developers/docs/topics/gateway#list-of-intents
 const (
-	Guilds                 int    = 1 << 0
-	GuildMembers           Intent = 1 << 1
-	GuildBans              Intent = 1 << 2
-	GuildEmojisAndStickers Intent = 1 << 3
-	GuildIntegrations      Intent = 1 << 4
-	GuildWebhooks          Intent = 1 << 5
-	GuildInvites           Intent = 1 << 6
-	GuildVoiceStates       Intent = 1 << 7
-	GuildPresences         Intent = 1 << 8
-	GuildMessages          Intent = 1 << 9
-	GuildMessageReactions  Intent = 1 << 10
-	GuildMessageTyping     Intent = 1 << 11
-	DirectMessages         Intent = 1 << 12
-	DirectMessageReactions Intent = 1 << 13
-	DirectMessageTyping    Intent = 1 << 14
-	MessageContent         Intent = 1 << 15
-	GuildScheduledEvents   Intent = 1 << 16
+	IntentGuilds                 Intent = 1 << 0
+	IntentGuildMembers           Intent = 1 << 1
+	IntentGuildBans              Intent = 1 << 2
+	IntentGuildEmojisAndStickers Intent = 1 << 3
+	IntentGuildIntegrations      Intent = 1 << 4
+	IntentGuildWebhooks          Intent = 1 << 5
+	IntentGuildInvites           Intent = 1 << 6
+	IntentGuildVoiceStates       Intent = 1 << 7
+	IntentGuildPresences         Intent = 1 << 8
+	IntentGuildMessages          Intent = 1 << 9
+	IntentGuildMessageReactions  Intent = 1 << 10
+	IntentGuildMessageTyping     Intent = 1 << 11
+	IntentDirectMessages         Intent = 1 << 12
+	IntentDirectMessageReactions Intent = 1 << 13
+	IntentDirectMessageTyping    Intent = 1 << 14
+	IntentMessageContent         Intent = 1 << 15
+	IntentGuildScheduledEvents   Intent = 1 << 16
 )
 
 // https://discord.com/developers/docs/topics/gateway#commands-and-events-gateway-events
