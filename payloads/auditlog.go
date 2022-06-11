@@ -9,7 +9,7 @@ type APIAuditLog struct {
 	ApplicationCommands []interface{} `json:"application_commands"` // TODO: ApplicationCommand
 	// Webhooks found in the audit log
 	// See https://discord.com/developers/docs/resources/webhook#webhook-object
-	Webhooks []interface{} `json:"webhooks"` // TODO: APIWebhook
+	Webhooks []APIWebhook `json:"webhooks"`
 	// Users found in the audit log
 	// See https://discord.com/developers/docs/resources/user#user-object
 	Users []APIUser `json:"users"`
