@@ -32,7 +32,7 @@ type APIApplication struct {
 	VerifyKey string `json:"verify_key"`
 	// The team this application belongs to
 	// See https://discord.com/developers/docs/topics/teams#data-models-team-object
-	Team interface{} `json:"team"` // TODO: APITeam
+	Team APITeam `json:"team"`
 	// If this application is a game sold on Discord, this field will be the guild to which it has been linked
 	GuildId globals.Snowflake `json:"guild_id"`
 	// If this application is a game sold on Discord, this field will be the id of the "Game SKU" that is created, if exists
