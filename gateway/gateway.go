@@ -483,32 +483,9 @@ type GatewayGuildMemberRemoveDispatch struct {
 type GatewayGuildMemberRemoveDispatchData struct {
 	// The id of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
-	// The user this guild member represents
-	// **This field won't be included in the member object attached to `MESSAGE_CREATE` and `MESSAGE_UPDATE` gateway events.**
+	// The user who was removed
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User payloads.APIUser `json:"user"`
-	// This users guild nickname
-	Nick string `json:"nick"`
-	// The member's guild avatar hash
-	Avatar string `json:"avatar"`
-	// Array of role object ids
-	// See https://discord.com/developers/docs/topics/permissions#role-object
-	Roles []globals.Snowflake `json:"roles"`
-	// When the user joined the guild
-	JoinedAt string `json:"joined_at"`
-	// When the user started boosting the guild
-	// See https://support.discord.com/hc/en-us/articles/360028038352-Server-Boosting-
-	PremiumSince string `json:"premium_since"`
-	// Whether the user is deafened in voice channels
-	Deaf bool `json:"deaf"`
-	// Whether the user is muted in voice channels
-	Mute bool `json:"mute"`
-	// Whether the user has not yet passed the guild's Membership Screening requirements
-	// If this field is not present, it can be assumed as `false`.*
-	Pending bool `json:"pending"`
-	// Timestamp of when the time out will be removed until then, they cannot interact with the guild
-	CommunicationDisabledUntil string `json:"communication_disabled_until"`
-}
+	User payloads.APIUser `json:"user"`}
 
 // Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
 type GatewayShard struct {
