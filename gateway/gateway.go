@@ -169,12 +169,7 @@ const (
 // Gateway Dispatch Payloads
 
 // https://discord.com/developers/docs/topics/gateway#hello
-type GatewayHello struct {
-	Op uint8            `json:"op"`
-	D  GatewayHelloData `json:"d"`
-	T  interface{}      `json:"t"`
-	S  interface{}      `json:"s"`
-}
+type GatewayHello NonDispatchPayload[GatewayHelloData]
 
 // https://discord.com/developers/docs/topics/gateway#hello
 type GatewayHelloData struct {
@@ -183,39 +178,19 @@ type GatewayHelloData struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#heartbeating
-type GatewayHeartbeatRequest struct {
-	Op uint8       `json:"op"`
-	D  interface{} `json:"d"`
-	T  interface{} `json:"t"`
-	S  interface{} `json:"s"`
-}
+type GatewayHeartbeatRequest NonDispatchPayload[interface{}]
 
 // https://discord.com/developers/docs/topics/gateway#heartbeating-example-gateway-heartbeat-ack
-type GatewayHeartbeatAck struct {
-	Op uint8       `json:"op"`
-	D  interface{} `json:"d"`
-	T  interface{} `json:"t"`
-	S  interface{} `json:"s"`
-}
+type GatewayHeartbeatAck NonDispatchPayload[interface{}]
 
 // https://discord.com/developers/docs/topics/gateway#invalid-session
-type GatewayInvalidSession struct {
-	Op uint8                     `json:"op"`
-	D  GatewayInvalidSessionData `json:"d"`
-	T  interface{}               `json:"t"`
-	S  interface{}               `json:"s"`
-}
+type GatewayInvalidSession NonDispatchPayload[GatewayInvalidSessionData]
 
 // https://discord.com/developers/docs/topics/gateway#invalid-session
 type GatewayInvalidSessionData bool
 
 // https://discord.com/developers/docs/topics/gateway#reconnect
-type GatewayReconnect struct {
-	Op uint8       `json:"op"`
-	D  interface{} `json:"d"`
-	T  interface{} `json:"t"`
-	S  interface{} `json:"s"`
-}
+type GatewayReconnect NonDispatchPayload[interface{}]
 
 // https://discord.com/developers/docs/topics/gateway#ready
 type GatewayReadyDispatch DataPayload[GatewayReadyDispatchData]
@@ -406,6 +381,17 @@ type GatewayGuildMemberRemoveDispatchData struct {
 	// The user who was removed
 	// See https://discord.com/developers/docs/resources/user#user-object
 	User payloads.APIUser `json:"user"`
+}
+
+type NonDispatchPayload[D interface{}] struct {
+	// Opcode for the payload
+	Op uint8 `json:"op"`
+	// Event data. Can sometimes be nil
+	D D `json:"d"`
+	// Always nil
+	T interface{} `json:"t"`
+	// Always nil
+	S interface{} `json:"s"`
 }
 
 type DataPayload[D interface{}] struct {
