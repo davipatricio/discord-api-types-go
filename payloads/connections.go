@@ -12,7 +12,7 @@ type APIConnection struct {
 	Name string `json:"name"`
 	// The service of the connection
 	// See https://discord.com/developers/docs/resources/user#connection-object-services
-	Type string `json:"type"`
+	Type ConnectionService `json:"type"`
 	// Whether the connection is revoked
 	Revoked bool `json:"revoked"`
 	// An array of partial server integrations
@@ -52,6 +52,7 @@ const (
 	ConnectionServiceLeagueOfLegends    ConnectionService = "leagueoflegends"
 	ConnectionServicePlayStationNetwork ConnectionService = "playstation"
 	ConnectionServiceReddit             ConnectionService = "reddit"
+	ConnectionServiceSamsungGalaxy      ConnectionService = "samsunggalaxy"
 	ConnectionServiceSpotify            ConnectionService = "spotify"
 	ConnectionServiceSkype              ConnectionService = "skype"
 	ConnectionServiceSteam              ConnectionService = "steam"
