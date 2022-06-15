@@ -170,39 +170,40 @@ const (
 
 // https://discord.com/developers/docs/topics/gateway#hello
 type GatewayHello struct {
-	Op int `json:"op"`
-	// The data of the event
-	D GatewayHelloData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
+	Op uint8            `json:"op"`
+	D  GatewayHelloData `json:"d"`
+	T  interface{}      `json:"t"`
+	S  interface{}      `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#hello
 type GatewayHelloData struct {
-	HeartbeatInterval int `json:"heartbeat_interval"`
+	// The interval (in milliseconds) the client should heartbeat with
+	HeartbeatInterval uint16 `json:"heartbeat_interval"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#heartbeating
 type GatewayHeartbeatRequest struct {
-	Op int `json:"op"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
+	Op uint8       `json:"op"`
+	D  interface{} `json:"d"`
+	T  interface{} `json:"t"`
+	S  interface{} `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#heartbeating-example-gateway-heartbeat-ack
 type GatewayHeartbeatAck struct {
-	Op int `json:"op"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
+	Op uint8       `json:"op"`
+	D  interface{} `json:"d"`
+	T  interface{} `json:"t"`
+	S  interface{} `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#invalid-session
 type GatewayInvalidSession struct {
-	Op int `json:"op"`
-	// The data of the event
-	D GatewayInvalidSessionData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
+	Op uint8                     `json:"op"`
+	D  GatewayInvalidSessionData `json:"d"`
+	T  interface{}               `json:"t"`
+	S  interface{}               `json:"s"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#invalid-session
@@ -210,50 +211,40 @@ type GatewayInvalidSessionData bool
 
 // https://discord.com/developers/docs/topics/gateway#reconnect
 type GatewayReconnect struct {
-	Op int `json:"op"`
+	Op uint8       `json:"op"`
+	D  interface{} `json:"d"`
+	T  interface{} `json:"t"`
+	S  interface{} `json:"s"`
 }
 
-// https://discord.com/developers/docs/topics/gateway#reconnect
-type GatewayReadyDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayReadyDispatchData `json:"d"`
-}
+// https://discord.com/developers/docs/topics/gateway#ready
+type GatewayReadyDispatch DataPayload[GatewayReadyDispatchData]
 
-// Data for the READY dispatch. https://discord.com/developers/docs/topics/gateway#reconnect
+// https://discord.com/developers/docs/topics/gateway#ready
 type GatewayReadyDispatchData struct {
 	// Gateway version.
 	// See https://discord.com/developers/docs/topics/gateway#gateways-gateway-versions
-	V int `json:"v"`
-	// Information about the user including email.
+	V uint32 `json:"v"`
+	// Information about the user including email
 	// See https://discord.com/developers/docs/resources/user#user-object
 	User payloads.APIUser `json:"user"`
-	// The guilds the user is in. See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
+	// The guilds the user is in
+	// See https://discord.com/developers/docs/resources/guild#unavailable-guild-object
 	Guilds payloads.APIUnavailableGuild `json:"guilds"`
 	// Used for resuming connections
 	SessionId string `json:"session_id"`
 	// The shard information associated with this session, if sent when identifying. See https://discord.com/developers/docs/topics/gateway#sharding
-	Shard []GatewayShard `json:"shard"`
+	// See https://discord.com/developers/docs/topics/gateway#sharding
+	Shard [2]uint32 `json:"shard"`
 	// Contains 'id' and 'flags' properties
+	// See https://discord.com/developers/docs/resources/application#application-object
 	Application payloads.APIApplication `json:"application"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#resumed
-type GatewayResumedDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-}
+type GatewayResumedDispatch DataPayload[interface{}]
 
-type GatewayChannelModifyDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayChannelModifyDispatchData `json:"d"`
-}
+type GatewayChannelModifyDispatch DataPayload[GatewayChannelModifyDispatchData]
 
 type GatewayChannelModifyDispatchData interface{} // TODO: Implement APIChannel type
 
@@ -276,15 +267,7 @@ type GatewayChannelDeleteDispatch GatewayChannelModifyDispatch
 type GatewayChannelDeleteDispatchData GatewayChannelModifyDispatchData
 
 // https://discord.com/developers/docs/topics/gateway#channel-pins-update
-type GatewayChannelPinsUpdateDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayChannelPinsUpdateDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayChannelPinsUpdateDispatch DataPayload[GatewayChannelPinsUpdateDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#channel-pins-update
 type GatewayChannelPinsUpdateDispatchData struct {
@@ -293,69 +276,44 @@ type GatewayChannelPinsUpdateDispatchData struct {
 	// The id of the channel
 	ChannelId globals.Snowflake `json:"channel_id"`
 	// The time at which the most recent pinned message was pinned
-	LastPinTimestamp int `json:"last_pin_timestamp"`
+	LastPinTimestamp uint `json:"last_pin_timestamp"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
-// https://discord.com/developers/docs/topics/gateway#guild-update
-type GatewayGuildModifyDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayChannelModifyDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildModifyDispatch DataPayload[GatewayGuildModifyDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
 type GatewayGuildModifyDispatchData payloads.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
-type GatewayGuildCreateDispatch GatewayGuildModifyDispatch
+type GatewayGuildCreateDispatch DataPayload[GatewayGuildCreateDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-create
-// https://discord.com/developers/docs/topics/gateway#guild-create-guild-create-extra-fields
 type GatewayGuildCreateDispatchData payloads.APIGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
 type GatewayGuildUpdateDispatch GatewayGuildModifyDispatch
 
 // https://discord.com/developers/docs/topics/gateway#guild-update
-type GatewayGuildUpdateDispatchData payloads.APIGuild
+type GatewayGuildUpdateDispatchData GatewayGuildModifyDispatchData
 
 // https://discord.com/developers/docs/topics/gateway#guild-delete
-type GatewayGuildDeleteDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildDeleteDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildDeleteDispatch DataPayload[GatewayGuildDeleteDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-delete
 type GatewayGuildDeleteDispatchData payloads.APIUnavailableGuild
 
 // https://discord.com/developers/docs/topics/gateway#guild-ban-add
 // https://discord.com/developers/docs/topics/gateway#guild-ban-remove
-type GatewayGuildBanModifyDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildBanModifyDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildBanModifyDispatch DataPayload[GatewayGuildBanModifyDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-ban-add
 // https://discord.com/developers/docs/topics/gateway#guild-ban-remove
 type GatewayGuildBanModifyDispatchData struct {
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
-	// The banned user. See https://discord.com/developers/docs/resources/user#user-object
+	// The banned user
+	// See https://discord.com/developers/docs/resources/user#user-object
 	User payloads.APIUser `json:"user"`
 }
 
@@ -372,53 +330,31 @@ type GatewayGuildBanRemoveDispatch GatewayGuildBanModifyDispatchData
 type GatewayGuildBanRemoveDispatchData GatewayGuildBanModifyDispatchData
 
 // https://discord.com/developers/docs/topics/gateway#guild-emojis-update
-type GatewayGuildEmojisUpdateDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildEmojisUpdateDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildEmojisUpdateDispatch DataPayload[GatewayGuildEmojisUpdateDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-emojis-update
 type GatewayGuildEmojisUpdateDispatchData struct {
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
-	// Array of emojis. See https://discord.com/developers/docs/resources/emoji#emoji-object
+	// Array of emojis
+	// See https://discord.com/developers/docs/resources/emoji#emoji-object
 	Emojis []payloads.APIEmoji `json:"emojis"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-stickers-update
-type GatewayGuildStickersUpdateDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildStickersUpdateDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildStickersUpdateDispatch DataPayload[GatewayGuildStickersUpdateDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-stickers-update
 type GatewayGuildStickersUpdateDispatchData struct {
 	// ID of the guild
 	GuildId globals.Snowflake `json:"guild_id"`
-	// Array of stickers. See https://discord.com/developers/docs/resources/sticker#sticker-object
+	// Array of stickers
+	// See https://discord.com/developers/docs/resources/sticker#sticker-object
 	Stickers []payloads.APISticker `json:"stickers"`
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-integrations-update
-type GatewayGuildIntegrationsUpdateDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildIntegrationsUpdateDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildIntegrationsUpdateDispatch DataPayload[GatewayGuildIntegrationsUpdateDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-integrations-update
 type GatewayGuildIntegrationsUpdateDispatchData struct {
@@ -427,15 +363,7 @@ type GatewayGuildIntegrationsUpdateDispatchData struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-member-add
-type GatewayGuildMemberAddDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildMemberAddDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildMemberAddDispatch DataPayload[GatewayGuildMemberAddDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-member-add
 type GatewayGuildMemberAddDispatchData struct {
@@ -453,7 +381,7 @@ type GatewayGuildMemberAddDispatchData struct {
 	// See https://discord.com/developers/docs/topics/permissions#role-object
 	Roles []globals.Snowflake `json:"roles"`
 	// When the user joined the guild
-	JoinedAt string `json:"joined_at"`
+	JoinedAT GatewayDispatchEvents `json:"joined_at"`
 	// When the user started boosting the guild
 	// See https://support.discord.com/hc/en-us/articles/360028038352-Server-Boosting-
 	PremiumSince string `json:"premium_since"`
@@ -469,15 +397,7 @@ type GatewayGuildMemberAddDispatchData struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#guild-member-remove
-type GatewayGuildMemberRemoveDispatch struct {
-	Op int `json:"op"`
-	// The name of the event
-	T string `json:"t"`
-	// The data of the event
-	D GatewayGuildMemberRemoveDispatchData `json:"d"`
-	// Sequence number, used for resuming sessions and heartbeats
-	S int `json:"s"`
-}
+type GatewayGuildMemberRemoveDispatch DataPayload[GatewayGuildMemberRemoveDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#guild-member-remove
 type GatewayGuildMemberRemoveDispatchData struct {
@@ -485,10 +405,16 @@ type GatewayGuildMemberRemoveDispatchData struct {
 	GuildId globals.Snowflake `json:"guild_id"`
 	// The user who was removed
 	// See https://discord.com/developers/docs/resources/user#user-object
-	User payloads.APIUser `json:"user"`}
+	User payloads.APIUser `json:"user"`
+}
 
-// Used for Guild Sharding. See https://discord.com/developers/docs/topics/gateway#sharding
-type GatewayShard struct {
-	ShardId    int `json:"shard_id"`
-	ShardCount int `json:"shard_count"`
+type DataPayload[D interface{}] struct {
+	// Opcode for the payload (in this case will always be 0)
+	Op GatewayOpcodes `json:"op"`
+	// Event data
+	D D `json:"d"`
+	// Sequence number, used for resuming sessions and heartbeats
+	S uint32 `json:"s"`
+	// The event name for this payload
+	T GatewayDispatchEvents `json:"t"`
 }
