@@ -383,6 +383,255 @@ type GatewayGuildMemberRemoveDispatchData struct {
 	User payloads.APIUser `json:"user"`
 }
 
+// https://discord.com/developers/docs/topics/gateway#guild-member-update
+type GatewayGuildMemberUpdateDispatch DataPayload[GatewayGuildMemberUpdateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-member-update
+type GatewayGuildMemberUpdateDispatchData struct {
+	// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The user this guild member represents
+	// **This field won't be included in the member object attached to `MESSAGE_CREATE` and `MESSAGE_UPDATE` gateway events.**
+	// See https://discord.com/developers/docs/resources/user#user-object
+	User payloads.APIUser `json:"user"`
+	// This users guild nickname
+	Nick string `json:"nick"`
+	// The member's guild avatar hash
+	Avatar string `json:"avatar"`
+	// Array of role object ids
+	// See https://discord.com/developers/docs/topics/permissions#role-object
+	Roles []globals.Snowflake `json:"roles"`
+	// When the user joined the guild
+	JoinedAT GatewayDispatchEvents `json:"joined_at"`
+	// When the user started boosting the guild
+	// See https://support.discord.com/hc/en-us/articles/360028038352-Server-Boosting-
+	PremiumSince string `json:"premium_since"`
+	// Whether the user is deafened in voice channels
+	Deaf bool `json:"deaf"`
+	// Whether the user is muted in voice channels
+	Mute bool `json:"mute"`
+	// Whether the user has not yet passed the guild's Membership Screening requirements
+	// If this field is not present, it can be assumed as `false`.*
+	Pending bool `json:"pending"`
+	// Timestamp of when the time out will be removed until then, they cannot interact with the guild
+	CommunicationDisabledUntil string `json:"communication_disabled_until"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-members-chunk
+type GatewayGuildMembersChunkDispatch DataPayload[GatewayGuildMembersChunkDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-members-chunk
+type GatewayGuildMembersChunkDispatchData struct {
+	// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// Set of guild members
+	// See https://discord.com/developers/docs/resources/guild#guild-member-object
+	Members []payloads.APIGuildMember `json:"members"`
+	// The chunk index in the expected chunks for this response (`0 <= chunk_index < chunk_count`)
+	ChunkIndex int `json:"chunk_index"`
+	// The total number of expected chunks for this response
+	ChunkCount int `json:"chunk_count"`
+	// If passing an invalid id to `REQUEST_GUILD_MEMBERS`, it will be returned here
+	NotFound []interface{} `json:"not_found"`
+	// If passing true to `REQUEST_GUILD_MEMBERS`, presences of the returned members will be here
+	// See https://discord.com/developers/docs/topics/gateway#presence
+	Presences []payloads.GatewayPresenceUpdate `json:"presences"`
+	// The nonce used in the Guild Members Request
+	// See https://discord.com/developers/docs/topics/gateway#request-guild-members
+	Nonce string `json:"nonce"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleModifyDispatch DataPayload[GatewayGuildRoleModifyDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleModifyDispatchData struct {
+	// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The role created or updated
+	// See https://discord.com/developers/docs/topics/permissions#role-object
+	Role payloads.APIRole `json:"role"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+type GatewayGuildRoleCreateDispatch GatewayGuildRoleModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+type GatewayGuildRoleCreateDispatchData GatewayGuildRoleModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleUpdateDispatch GatewayGuildRoleModifyDispatch
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleUpdateDispatchData GatewayGuildRoleModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-delete
+type GatewayGuildRoleDeleteDispatch DataPayload[GatewayGuildRoleDeleteDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-delete
+type GatewayGuildRoleDeleteDispatchData struct {
+	// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The id of the role
+	RoleId globals.Snowflake `json:"role_id"`
+}
+
+type GatewayGuildScheduledEventCreateDispatch DataPayload[GatewayGuildScheduledEventCreateDispatchData]
+
+type GatewayGuildScheduledEventCreateDispatchData interface{} // TODO: APIGuildScheduledEvent
+
+type GatewayGuildScheduledEventUpdateDispatch DataPayload[GatewayGuildScheduledEventUpdateDispatchData]
+
+type GatewayGuildScheduledEventUpdateDispatchData interface{} // TODO: APIGuildScheduledEvent
+
+type GatewayGuildScheduledEventDeleteDispatch DataPayload[GatewayGuildScheduledEventDeleteDispatchData]
+
+type GatewayGuildScheduledEventDeleteDispatchData interface{} // TODO: APIGuildScheduledEvent
+
+type GatewayGuildScheduledEventUserAddDispatch DataPayload[GatewayGuildScheduledEventUserAddDispatchData]
+
+type GatewayGuildScheduledEventUserAddDispatchData struct {
+	GuildScheduledEventId globals.Snowflake `json:"guild_scheduled_event_id"`
+	UserId                globals.Snowflake `json:"user_id"`
+	GuildId               globals.Snowflake `json:"guild_id"`
+}
+
+type GatewayGuildScheduledEventUserRemoveDispatch DataPayload[GatewayGuildScheduledEventUserRemoveDispatchData]
+
+type GatewayGuildScheduledEventUserRemoveDispatchData struct {
+	GuildScheduledEventId globals.Snowflake `json:"guild_scheduled_event_id"`
+	UserId                globals.Snowflake `json:"user_id"`
+	GuildId               globals.Snowflake `json:"guild_id"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#integration-create
+type GatewayIntegrationCreateDispatch DataPayload[GatewayIntegrationCreateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#integration-create
+type GatewayIntegrationCreateDispatchData struct {
+	// Integration id
+	Id globals.Snowflake `json:"id"`
+	// Integration name
+	Name string `json:"name"`
+	// Integration type
+	Type payloads.APIGuildIntegrationType `json:"type"`
+	// Is this integration enabled
+	Enabled bool `json:"enabled"`
+	// Is this integration syncing
+	// This field is not provided for `discord` bot integrations.
+	Syncing bool `json:"syncing"`
+	// ID that this integration uses for "subscribers"
+	// This field is not provided for `discord` bot integrations.
+	RoleId globals.Snowflake `json:"role_id"`
+	// Whether emoticons should be synced for this integration (`twitch` only currently)
+	// This field is not provided for `discord` bot integrations.
+	EnableEmoticons bool `json:"enable_emoticons"`
+	// The behavior of expiring subscribers
+	//This field is not provided for `discord` bot integrations.
+	// See https://discord.com/developers/docs/resources/guild#integration-object-integration-expire-behaviors
+	ExpireBehavior payloads.IntegrationExpireBehavior `json:"expire_behavior"`
+	// The grace period (in days) before expiring subscribers
+	// This field is not provided for `discord` bot integrations.
+	ExpireGracePeriod uint16 `json:"expire_grace_period"`
+	// User for this integration
+	// This field is not provided for `discord` bot integrations.
+	// See https://discord.com/developers/docs/resources/user#user-object
+	User payloads.APIUser `json:"user"`
+	// Integration account information
+	// See https://discord.com/developers/docs/resources/guild#integration-account-object
+	Account payloads.APIIntegrationAccount `json:"account"`
+	// When this integration was last synced
+	// This field is not provided for `discord` bot integrations.
+	SyncedAt string `json:"synced_at"`
+	// How many subscribers this integration has
+	// This field is not provided for `discord` bot integrations.
+	SubscriberCount uint32 `json:"subscriber_count"`
+	// Has this integration been revoked
+	// This field is not provided for `discord` bot integrations.
+	Revoked bool `json:"revoked"`
+	// The bot/OAuth2 application for discord integrations
+	// See https://discord.com/developers/docs/resources/guild#integration-application-object
+	// This field is not provided for `discord` bot integrations.
+	Application payloads.APIGuildIntegrationApplication `json:"application"`
+	GuildId     globals.Snowflake                       `json:"guild_id"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#integration-update
+type GatewayIntegrationUpdateDispatch DataPayload[GatewayIntegrationUpdateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#integration-update
+type GatewayIntegrationUpdateDispatchData GatewayIntegrationCreateDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#integration-delete
+type GatewayIntegrationDeleteDispatch DataPayload[GatewayIntegrationDeleteDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#integration-delete
+type GatewayIntegrationDeleteDispatchData struct {
+	// Integration id
+	Id globals.Snowflake `json:"id"`
+	// ID of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// ID of the bot/OAuth2 application for this Discord integration
+	ApplicationId globals.Snowflake `json:"application_id"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#interaction-create
+type GatewayInteractionCreateDispatch  DataPayload[GatewayInteractionCreateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#interaction-create
+type GatewayInteractionCreateDispatchData interface{} // TODO: APIInteraction
+
+// https://discord.com/developers/docs/topics/gateway#invite-create
+type GatewayInviteCreateDispatch DataPayload[GatewayInviteCreateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#invite-create
+type GatewayInviteCreateDispatchData struct {
+	// The channel the invite is for
+	ChannelId globals.Snowflake `json:"channel_id"`
+	// The unique invite code
+	// See https://discord.com/developers/docs/resources/invite#invite-object
+	Code string `json:"code"`
+	// The time at which the invite was created
+	CreatedAt string `json:"created_at"`
+	// The guild of the invite
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The user that created the invite
+	// See https://discord.com/developers/docs/resources/user#user-object
+	Inviter payloads.APIUser `json:"inviter"`
+	// How long the invite is valid for (in seconds)
+	MaxAge uint `json:"max_age"`
+	// The maximum number of times the invite can be used
+	MaxUses uint `json:"max_uses"`
+	// The type of target for this voice channel invite
+	// See https://discord.com/developers/docs/resources/invite#invite-object-invite-target-types
+	TargetType payloads.InviteTargetType `json:"target_type"`
+	// The user whose stream to display for this voice channel stream invite
+	// See https://discord.com/developers/docs/resources/user#user-object
+	TargetUser payloads.APIUser `json:"target_user"`
+	// The embedded application to open for this voice channel embedded application invite
+	TargetApplication payloads.APIApplication `json:"target_application"`
+	// Whether or not the invite is temporary (invited users will be kicked on disconnect unless they're assigned a role)
+	Temporary bool `json:"temporary"`
+	// How many times the invite has been used (always will be `0`)
+	Uses uint8 `json:"uses"`
+}
+
+// https://discord.com/developers/docs/topics/gateway#invite-delete
+type GatewayInviteDeleteDispatch DataPayload[GatewayInviteDeleteDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#invite-delete
+type GatewayInviteDeleteDispatchData struct {
+	// The channel of the invite
+	ChannelId globals.Snowflake `json:"channel_id"`
+	// The guild of the invite
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The unique invite code
+	// See https://discord.com/developers/docs/resources/invite#invite-object
+	Code string `json:"code"`
+}
+
 type NonDispatchPayload[D interface{}] struct {
 	// Opcode for the payload
 	Op uint8 `json:"op"`
