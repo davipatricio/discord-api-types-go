@@ -413,6 +413,20 @@ type GatewayGuildMembersChunkDispatchData struct {
 	Nonce string `json:"nonce"`
 }
 
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleModifyDispatch DataPayload[GatewayGuildRoleModifyDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleModifyDispatchData struct {
+	// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The role created or updated
+	// See https://discord.com/developers/docs/topics/permissions#role-object
+	Role payloads.APIRole `json:"role"`
+}
+
 type NonDispatchPayload[D interface{}] struct {
 	// Opcode for the payload
 	Op uint8 `json:"op"`
