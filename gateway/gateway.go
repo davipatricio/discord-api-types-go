@@ -389,6 +389,30 @@ type GatewayGuildMemberUpdateDispatch DataPayload[GatewayGuildMemberUpdateDispat
 // https://discord.com/developers/docs/topics/gateway#guild-member-update
 type GatewayGuildMemberUpdateDispatchData payloads.APIGuildMember
 
+// https://discord.com/developers/docs/topics/gateway#guild-members-chunk
+type GatewayGuildMembersChunkDispatch DataPayload[GatewayGuildMembersChunkDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-members-chunk
+type GatewayGuildMembersChunkDispatchData struct {
+	/// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// Set of guild members
+	// See https://discord.com/developers/docs/resources/guild#guild-member-object
+	Members []payloads.APIGuildMember `json:"members"`
+	// The chunk index in the expected chunks for this response (`0 <= chunk_index < chunk_count`)
+	ChunkIndex uint `json:"chunk_index"`
+	// The total number of expected chunks for this response
+	ChunkCount uint `json:"chunk_count"`
+	// If passing an invalid id to `REQUEST_GUILD_MEMBERS`, it will be returned here
+	NotFound []interface{} `json:"not_found"`
+	// If passing true to `REQUEST_GUILD_MEMBERS`, presences of the returned members will be here
+	// See https://discord.com/developers/docs/topics/gateway#presence
+	Presences []payloads.GatewayPresenceUpdate
+	// The nonce used in the Guild Members Request
+	// See https://discord.com/developers/docs/topics/gateway#request-guild-members
+	Nonce string `json:"nonce"`
+}
+
 type NonDispatchPayload[D interface{}] struct {
 	// Opcode for the payload
 	Op uint8 `json:"op"`
