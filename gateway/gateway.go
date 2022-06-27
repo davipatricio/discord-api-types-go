@@ -36,10 +36,10 @@ const (
 	GatewayOpcodesHeartbeatACK GatewayOpcodes = 11
 )
 
-//https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
 type GatewayCloseCodes uint16
 
-//https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
 const (
 	// We're not sure what went wrong. Try reconnecting?
 	GatewayCloseCodesUnknownError GatewayCloseCodes = 4000
@@ -382,6 +382,12 @@ type GatewayGuildMemberRemoveDispatchData struct {
 	// See https://discord.com/developers/docs/resources/user#user-object
 	User payloads.APIUser `json:"user"`
 }
+
+// https://discord.com/developers/docs/topics/gateway#guild-member-update
+type GatewayGuildMemberUpdateDispatch DataPayload[GatewayGuildMemberUpdateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-member-update
+type GatewayGuildMemberUpdateDispatchData payloads.APIGuildMember
 
 type NonDispatchPayload[D interface{}] struct {
 	// Opcode for the payload
