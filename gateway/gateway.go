@@ -427,6 +427,29 @@ type GatewayGuildRoleModifyDispatchData struct {
 	Role payloads.APIRole `json:"role"`
 }
 
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+type GatewayGuildRoleCreateDispatch DataPayload[GatewayGuildRoleCreateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-create
+type GatewayGuildRoleCreateDispatchData GatewayGuildRoleModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleUpdateDispatch DataPayload[GatewayGuildRoleUpdateDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-update
+type GatewayGuildRoleUpdateDispatchData GatewayGuildRoleModifyDispatchData
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-delete
+type GatewayGuildRoleDeleteDispatch DataPayload[GatewayGuildRoleDeleteDispatchData]
+
+// https://discord.com/developers/docs/topics/gateway#guild-role-delete
+type GatewayGuildRoleDeleteDispatchData struct {
+	// The id of the guild
+	GuildId globals.Snowflake `json:"guild_id"`
+	// The id of the role
+	RoleId globals.Snowflake `json:"role_id"`
+}
+
 type NonDispatchPayload[D interface{}] struct {
 	// Opcode for the payload
 	Op uint8 `json:"op"`
