@@ -42,7 +42,7 @@ type APIUser struct {
 }
 
 // https://discord.com/developers/docs/resources/user#user-object-user-flags
-type UserFlags uint32
+type UserFlags uint64
 
 // https://discord.com/developers/docs/resources/user#user-object-user-flags
 const (
@@ -78,6 +78,9 @@ const (
 	UserFlagsBotHTTPInteractions UserFlags = 1 << 19
 	// User has been identified as spammer
 	UserFlagsSpammer UserFlags = 1 << 20
+	// User's account has been quarantined based on recent activity
+	// This user flag is currently not documented by Discord but has a known value which we will try to keep up to date
+	UserFlagsQuarantined UserFlags = 1 << 44
 )
 
 // https://discord.com/developers/docs/resources/user#user-object-premium-types
