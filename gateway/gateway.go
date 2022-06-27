@@ -36,10 +36,10 @@ const (
 	GatewayOpcodesHeartbeatACK GatewayOpcodes = 11
 )
 
-//https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
 type GatewayCloseCodes uint16
 
-//https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
+// https://discord.com/developers/docs/topics/opcodes-and-status-codes#gateway-gateway-close-event-codes
 const (
 	// We're not sure what went wrong. Try reconnecting?
 	GatewayCloseCodesUnknownError GatewayCloseCodes = 4000
@@ -578,7 +578,7 @@ type GatewayIntegrationDeleteDispatchData struct {
 }
 
 // https://discord.com/developers/docs/topics/gateway#interaction-create
-type GatewayInteractionCreateDispatch  DataPayload[GatewayInteractionCreateDispatchData]
+type GatewayInteractionCreateDispatch DataPayload[GatewayInteractionCreateDispatchData]
 
 // https://discord.com/developers/docs/topics/gateway#interaction-create
 type GatewayInteractionCreateDispatchData interface{} // TODO: APIInteraction
