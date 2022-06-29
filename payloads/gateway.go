@@ -64,11 +64,17 @@ const (
 	PresenceUpdateStatusOffline   PresenceUpdateStatus = "offline"
 )
 
-//https://discord.com/developers/docs/topics/gateway#client-status-object
+// https://discord.com/developers/docs/topics/gateway#client-status-object
 type GatewayPresenceClientStatus struct {
+	// The user's status set for an active desktop (Windows, Linux, Mac) application session
+	Desktop PresenceUpdateStatus `json:"desktop"`
+	// The user's status set for an active mobile (iOS, Android) application session
+	Mobile PresenceUpdateStatus `json:"mobile"`
+	// The user's status set for an active web (browser, bot account) application session
+	Web PresenceUpdateStatus `json:"web"`
 }
 
-//https://discord.com/developers/docs/topics/gateway#activity-object-activity-structure
+// https://discord.com/developers/docs/topics/gateway#activity-object-activity-structure
 type GatewayActivity struct {
 	// The activity's id
 	Id globals.Snowflake `json:"id"`
