@@ -11,7 +11,8 @@ type APIConnection struct {
 	// The username of the connection account
 	Name string `json:"name"`
 	// The service of the connection
-	Type string `json:"type"`
+	// See https://discord.com/developers/docs/resources/user#connection-object-services
+	Type ConnectionService `json:"type"`
 	// Whether the connection is revoked
 	Revoked bool `json:"revoked"`
 	// An array of partial server integrations
@@ -39,4 +40,24 @@ const (
 	ConnectionVisibilityNone ConnectionVisibility = iota
 	// Visible to everyone
 	ConnectionVisibilityEveryone
+)
+
+type ConnectionService string
+
+const (
+	ConnectionServiceBattleNet          ConnectionService = "battlenet"
+	ConnectionServiceFacebook           ConnectionService = "facebook"
+	ConnectionServiceEpicGames          ConnectionService = "epicgames"
+	ConnectionServiceGitHub             ConnectionService = "github"
+	ConnectionServiceLeagueOfLegends    ConnectionService = "leagueoflegends"
+	ConnectionServicePlayStationNetwork ConnectionService = "playstation"
+	ConnectionServiceReddit             ConnectionService = "reddit"
+	ConnectionServiceSamsungGalaxy      ConnectionService = "samsunggalaxy"
+	ConnectionServiceSpotify            ConnectionService = "spotify"
+	ConnectionServiceSkype              ConnectionService = "skype"
+	ConnectionServiceSteam              ConnectionService = "steam"
+	ConnectionServiceTwitch             ConnectionService = "twitch"
+	ConnectionServiceTwitter            ConnectionService = "twitter"
+	ConnectionServiceXbox               ConnectionService = "xbox"
+	ConnectionServiceYouTube            ConnectionService = "youtube"
 )
